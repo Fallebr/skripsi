@@ -2,15 +2,17 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:reports/commons/collapsing_navigation_drawer.dart';
 import 'package:reports/login/Logadm.dart';
 import 'package:reports/login/login.dart';
+import 'package:reports/main.dart';
 
 class LogAdm extends StatefulWidget {
   @override
   _LogAdmState createState() => _LogAdmState();
 }
 
-Widget buildPwd() {
+Widget buildPwd(TextEditingController passwordController) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: <Widget>[
@@ -85,14 +87,43 @@ Widget buildLpSnd(BuildContext context) {
   );
 }
 
-Widget buildLogbtn(TextEditingController passwordController) {
+Widget buildLogbtn(
+    TextEditingController passwordController, BuildContext context) {
   return Container(
     padding: EdgeInsets.symmetric(vertical: 25),
     width: double.infinity,
     child: RaisedButton(
       elevation: 5,
       onPressed: () {
-        if (passwordController.text == 'Assalamualaikumcantik1213') {}
+        if (passwordController.text == '12') {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => MyHomePage(),
+            ),
+          );
+        } else {
+          showDialog(
+              context: context,
+              builder: (context) {
+                return AlertDialog(
+                  backgroundColor: Color(0xff5ac18e),
+                  title: Text(
+                    'INFORMASI',
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  content: Text(
+                    'Password Salah!',
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
+                );
+              });
+        }
       },
       padding: EdgeInsets.all(15),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
@@ -107,10 +138,6 @@ Widget buildLogbtn(TextEditingController passwordController) {
     ),
   );
 }
-
-// Widget buildback(BuildContext context) {
-//   return Container();
-// }
 
 class _LogAdmState extends State<LogAdm> {
   @override
@@ -147,9 +174,9 @@ class _LogAdmState extends State<LogAdm> {
                                 fontWeight: FontWeight.bold),
                           ),
                           SizedBox(height: 50),
-                          buildPwd(),
+                          buildPwd(passwordController),
                           buildLpSnd(context),
-                          buildLogbtn(passwordController),
+                          buildLogbtn(passwordController, context),
                         ],
                       ),
                     ),

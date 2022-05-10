@@ -23,7 +23,7 @@ class MyHomePage extends StatelessWidget {
         title: Text("Report"),
       ),
       drawer: CollapsingNavigationDrawer(),
-      body: CollapsingNavigationDrawer(),
+      body: ListView(),
     );
   }
 }

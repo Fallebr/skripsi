@@ -2,14 +2,17 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:reports/commons/collapsing_navigation_drawer.dart';
+import 'package:reports/login/Logadm.dart';
 import 'package:reports/login/login.dart';
+import 'package:reports/main.dart';
 
 class LogOwn extends StatefulWidget {
   @override
   _LogOwnState createState() => _LogOwnState();
 }
 
-Widget buildPwd() {
+Widget buildPwd(TextEditingController passwordController) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: <Widget>[
@@ -32,6 +35,7 @@ Widget buildPwd() {
             ]),
         height: 60,
         child: TextField(
+          controller: passwordController,
           obscureText: true,
           style: TextStyle(
             color: Colors.black87,
@@ -83,13 +87,44 @@ Widget buildLpSnd(BuildContext context) {
   );
 }
 
-Widget buildLogbtn() {
+Widget buildLogbtn(
+    TextEditingController passwordController, BuildContext context) {
   return Container(
     padding: EdgeInsets.symmetric(vertical: 25),
     width: double.infinity,
     child: RaisedButton(
       elevation: 5,
-      onPressed: () => print('ok masuk'),
+      onPressed: () {
+        if (passwordController.text == '13') {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => MyHomePage(),
+            ),
+          );
+        } else {
+          showDialog(
+              context: context,
+              builder: (context) {
+                return AlertDialog(
+                  backgroundColor: Color(0xff5ac18e),
+                  title: Text(
+                    'INFORMASI',
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  content: Text(
+                    'Password Salah!',
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
+                );
+              });
+        }
+      },
       padding: EdgeInsets.all(15),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
       color: Colors.white,
@@ -107,6 +142,7 @@ Widget buildLogbtn() {
 class _LogOwnState extends State<LogOwn> {
   @override
   Widget build(BuildContext context) {
+    TextEditingController passwordController = TextEditingController();
     return Scaffold(
         body: AnnotatedRegion<SystemUiOverlayStyle>(
             value: SystemUiOverlayStyle.light,
@@ -138,9 +174,9 @@ class _LogOwnState extends State<LogOwn> {
                                 fontWeight: FontWeight.bold),
                           ),
                           SizedBox(height: 50),
-                          buildPwd(),
+                          buildPwd(passwordController),
                           buildLpSnd(context),
-                          buildLogbtn(),
+                          buildLogbtn(passwordController, context),
                         ],
                       ),
                     ),
