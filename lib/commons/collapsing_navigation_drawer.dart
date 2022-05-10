@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:reports/main.dart';
 import 'package:reports/model/navigation_model.dart';
 import 'package:reports/model/navigation_model.dart';
 import 'package:reports/theme.dart';
 import 'collapsing_list_tile.dart';
+import 'package:reports/login/login.dart';
 
 class CollapsingNavigationDrawer extends StatefulWidget {
   @override
@@ -53,9 +55,75 @@ class CollapsingNavigationDrawerState extends State<CollapsingNavigationDrawer>
           ),
           InkWell(
             onTap: () {
-              setState(() {
-                isCollapsed = !isCollapsed;
-              });
+              showDialog(
+                  context: context,
+                  builder: (context) {
+                    return AlertDialog(
+                      backgroundColor: Color(0xff5ac18e),
+                      title: Text(
+                        'INFORMASI',
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                      content: Text(
+                        'Apakah anda yakin ingin Log Out?',
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                      ),
+                      actions: [
+                        GestureDetector(
+                            onTap: () {
+                              Navigator.of(context).pop(false);
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
+                                  color: Colors.black87),
+                              child: Padding(
+                                padding: const EdgeInsets.only(
+                                    right: 35, left: 35, top: 10, bottom: 10),
+                                child: Text(
+                                  'NO',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.w800,
+                                      fontSize: 17,
+                                      color: Colors.white),
+                                ),
+                              ),
+                            )),
+                        GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => Login(),
+                                ),
+                              );
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
+                                  color: Colors.black87),
+                              child: Padding(
+                                padding: const EdgeInsets.only(
+                                    right: 35, left: 35, top: 10, bottom: 10),
+                                child: Text(
+                                  'YES',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.w800,
+                                      fontSize: 17,
+                                      color: Colors.white),
+                                ),
+                              ),
+                            )),
+                      ],
+                    );
+                  });
             },
             child: Icon(
               Icons.chevron_left,
