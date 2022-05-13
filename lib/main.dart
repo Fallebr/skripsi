@@ -20,7 +20,7 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Report"),
+        title: Text("Selamat Datang!"),
       ),
       drawer: CollapsingNavigationDrawer(),
       body: ListView(),

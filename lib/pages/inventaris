@@ -1,0 +1,19 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:reports/commons/collapsing_navigation_drawer.dart';
+
+class Inventaris extends StatefulWidget {
+  @override
+  _InventarisState createState() => _InventarisState();
+}
+
+class _InventarisState extends State<Inventaris> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(appBar: AppBar(title: Text("Halaman inventaris"),
+    ),
+    drawer: CollapsingNavigationDrawer(),
+    body: ListView(),
+    );
+  }
+}
