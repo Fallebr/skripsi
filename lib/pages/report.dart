@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:reports/commons/collapsing_navigation_drawer.dart';
+import 'package:reports/commons/navigation_drawer_widget.dart';
 
 class Report extends StatefulWidget {
   @override
@@ -13,8 +13,9 @@ class _ReportState extends State<Report> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Halaman Report"),
+        backgroundColor: Color(0xff5ac18e),
       ),
-      drawer: CollapsingNavigationDrawer(),
+      drawer: NavigationDrawerWidget(),
       body: ListView(),
     );
   }

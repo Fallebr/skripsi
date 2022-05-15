@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'login/login.dart';
-import 'commons/collapsing_navigation_drawer.dart';
+import 'commons/navigation_drawer_widget.dart';
 
 void main() => runApp(MyApp());
 
@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Report Application',
       theme: ThemeData(primaryColor: Colors.amber),
-      home: Login(),
+      home: MyHomePage(),
     );
   }
 }
@@ -21,8 +21,9 @@ class MyHomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text("Selamat Datang!"),
+        backgroundColor: Color(0xff5ac18e),
       ),
-      drawer: CollapsingNavigationDrawer(),
+      drawer: NavigationDrawerWidget(),
       body: ListView(),
     );
   }
