@@ -6,6 +6,7 @@ import 'package:reports/commons/navigation_drawer_widget.dart';
 import 'package:reports/login/Logadm.dart';
 import 'package:reports/login/login.dart';
 import 'package:reports/main.dart';
+import 'package:reports/pages/home.dart';
 
 class LogAdm extends StatefulWidget {
   @override
@@ -99,7 +100,7 @@ Widget buildLogbtn(
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => MyHomePage(),
+              builder: (context) => Home(),
             ),
           );
         } else {
