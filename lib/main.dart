@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:reports/pages/home.dart';
 import 'login/login.dart';
 import 'commons/navigation_drawer_widget.dart';
 
@@ -10,7 +11,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Report Application',
       theme: ThemeData(primaryColor: Colors.amber),
-      home: MyHomePage(),
+      home: Home(),
     );
   }
 }
