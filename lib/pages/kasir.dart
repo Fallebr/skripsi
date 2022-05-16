@@ -2,6 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:reports/commons/curved_navbar.dart';
 import 'package:reports/commons/navigation_drawer_widget.dart';
+import 'package:reports/kasir/kasir2.dart';
+import 'package:reports/kasir/transaksi.dart';
+import 'package:reports/pages/inventaris.dart';
 import 'package:reports/pages/menu.dart';
 
 class Kasir extends StatefulWidget {
@@ -25,7 +28,11 @@ class _KasirState extends State<Kasir> {
           Card(
             margin: const EdgeInsets.all(8),
             child: InkWell(
-              onTap: () {},
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => Transaksi(),
+                ));
+              },
               splashColor: Color(0xff5ac18e),
               child: Center(
                 child: Column(
@@ -45,7 +52,11 @@ class _KasirState extends State<Kasir> {
           Card(
             margin: const EdgeInsets.all(8),
             child: InkWell(
-              onTap: () {},
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => Kasir2(),
+                ));
+              },
               splashColor: Color(0xff5ac18e),
               child: Center(
                 child: Column(
@@ -65,7 +76,11 @@ class _KasirState extends State<Kasir> {
           Card(
             margin: const EdgeInsets.all(8),
             child: InkWell(
-              onTap: () {},
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => Menu(),
+                ));
+              },
               splashColor: Color(0xff5ac18e),
               child: Center(
                 child: Column(
@@ -85,7 +100,11 @@ class _KasirState extends State<Kasir> {
           Card(
             margin: const EdgeInsets.all(8),
             child: InkWell(
-              onTap: () {},
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => Inventaris(),
+                ));
+              },
               splashColor: Color(0xff5ac18e),
               child: Center(
                 child: Column(

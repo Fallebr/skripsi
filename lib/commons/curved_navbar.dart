@@ -1,5 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:reports/kasir/kasir2.dart';
+import 'package:reports/kasir/transaksi.dart';
+import 'package:reports/pages/home.dart';
+import 'package:reports/pages/inventaris.dart';
+import 'package:reports/pages/report.dart';
 
 class CurvedNavigationBar extends StatefulWidget {
   @override
@@ -35,6 +40,9 @@ class _CurvedNavigationBarState extends State<CurvedNavigationBar> {
                     selected: _selectedIndex == 0,
                     onPressed: () {
                       setState(() {
+                        Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => Home(),
+                        ));
                         _selectedIndex = 0;
                       });
                     }),
@@ -44,6 +52,9 @@ class _CurvedNavigationBarState extends State<CurvedNavigationBar> {
                     selected: _selectedIndex == 1,
                     onPressed: () {
                       setState(() {
+                        Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => Transaksi(),
+                        ));
                         _selectedIndex = 1;
                       });
                     }),
@@ -53,6 +64,9 @@ class _CurvedNavigationBarState extends State<CurvedNavigationBar> {
                     selected: _selectedIndex == 2,
                     onPressed: () {
                       setState(() {
+                        Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => Inventaris(),
+                        ));
                         _selectedIndex = 2;
                       });
                     }),
@@ -63,6 +77,9 @@ class _CurvedNavigationBarState extends State<CurvedNavigationBar> {
                     onPressed: () {
                       setState(() {
                         _selectedIndex = 3;
+                        Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => Kasir2(),
+                        ));
                       });
                     }),
                 IconBottomBar(
@@ -72,6 +89,9 @@ class _CurvedNavigationBarState extends State<CurvedNavigationBar> {
                     onPressed: () {
                       setState(() {
                         _selectedIndex = 4;
+                        Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => Report(),
+                        ));
                       });
                     }),
               ],
@@ -105,12 +125,12 @@ class IconBottomBar extends StatelessWidget {
         IconButton(
             onPressed: onPressed,
             icon: Icon(icon,
-                size: 25, color: selected ? Colors.white : Colors.black26)),
+                size: 25, color: selected ? Colors.white : Colors.white)),
         Text(text,
             style: TextStyle(
                 fontSize: 12,
                 height: .1,
-                color: selected ? Colors.white : Colors.black54))
+                color: selected ? Colors.white : Colors.white))
       ],
     );
   }

@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Report Application',
       theme: ThemeData(primaryColor: Colors.amber),
-      home: Login(),
+      home: Home(),
     );
   }
 }
