@@ -12,7 +12,23 @@ class Menu extends StatelessWidget {
         backgroundColor: Color(0xff5ac18e),
       ),
       drawer: NavigationDrawerWidget(),
-      body: ListView(),
+      body: ListView(children: <Widget>[
+        new ListTile(
+          leading: new Icon(Icons.coffee),
+          title: new Text("KOPI"),
+          onTap: () {},
+        ),
+        new ListTile(
+          leading: new Icon(Icons.icecream),
+          title: new Text("NON KOPI"),
+          onTap: () {},
+        ),
+        new ListTile(
+          leading: new Icon(Icons.fastfood),
+          title: new Text("SNACK"),
+          onTap: () {},
+        ),
+      ]),
       bottomNavigationBar: CurvedNavigationBar(),
     );
   }
