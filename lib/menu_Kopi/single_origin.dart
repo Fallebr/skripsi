@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:reports/commons/curved_navbar.dart';
 import 'package:reports/commons/navigation_drawer_widget.dart';
 
-class NonKopiInven extends StatelessWidget {
+class Singo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Cek Stok Non-Kopi"),
+        title: Text("Single Origin"),
         backgroundColor: Color(0xff5ac18e),
       ),
       drawer: NavigationDrawerWidget(),
@@ -16,86 +16,69 @@ class NonKopiInven extends StatelessWidget {
         children: <Widget>[
           new ListTile(
             leading: new Icon(Icons.arrow_right),
-            title: new Text("Strawberry Frappucino"),
-            subtitle: new Text("Rp. 18.000,00"),
+            title: new Text("Kopi Letek"),
+            subtitle: new Text("Rp. 7.500,00"),
             onTap: () {},
           ),
           new ListTile(
             leading: new Icon(Icons.arrow_right),
-            title: new Text("Chocolate"),
-            subtitle: new Text("Rp. 19.000,00"),
+            title: new Text("Kopi Letek + susu"),
+            subtitle: new Text("Rp. 11.500,00"),
             onTap: () {},
           ),
           new ListTile(
             leading: new Icon(Icons.arrow_right),
-            title: new Text("Macha Latte"),
-            subtitle: new Text("Rp. 19.000,00"),
+            title: new Text("Tubruk"),
             onTap: () {},
           ),
           new ListTile(
             leading: new Icon(Icons.arrow_right),
-            title: new Text("Oreo"),
-            subtitle: new Text("Rp. 18.000,00"),
+            title: new Text("Bengkulu"),
             onTap: () {},
           ),
           new ListTile(
             leading: new Icon(Icons.arrow_right),
-            title: new Text("Red Velvet"),
-            subtitle: new Text("Rp. 18.000,00"),
+            title: new Text("Kopi Letek Premium"),
             onTap: () {},
           ),
           new ListTile(
             leading: new Icon(Icons.arrow_right),
-            title: new Text("Vanilla"),
-            subtitle: new Text("Rp. 18.000,00"),
+            title: new Text("Toraja"),
             onTap: () {},
           ),
           new ListTile(
             leading: new Icon(Icons.arrow_right),
-            title: new Text("Mocca"),
-            subtitle: new Text("Rp. 18.000,00"),
+            title: new Text("Aceh Gayo"),
             onTap: () {},
           ),
           new ListTile(
             leading: new Icon(Icons.arrow_right),
-            title: new Text("Choco Chezze"),
-            subtitle: new Text("Rp. 18.000,00"),
+            title: new Text("Sidikalang"),
             onTap: () {},
           ),
           new ListTile(
             leading: new Icon(Icons.arrow_right),
-            title: new Text("Lemon Tea"),
-            subtitle: new Text("Rp. 17.000,00"),
+            title: new Text("Lintang"),
             onTap: () {},
           ),
           new ListTile(
             leading: new Icon(Icons.arrow_right),
-            title: new Text("Tarik Tea"),
-            subtitle: new Text("Rp. 17.000,00"),
+            title: new Text("Bali Kintamani"),
             onTap: () {},
           ),
           new ListTile(
             leading: new Icon(Icons.arrow_right),
-            title: new Text("Jasmine Tea"),
-            subtitle: new Text("Rp. 9.000,00"),
+            title: new Text("Flores Bajawa"),
             onTap: () {},
           ),
           new ListTile(
             leading: new Icon(Icons.arrow_right),
-            title: new Text("Lyche Tea"),
-            subtitle: new Text("Rp. 18.000,00"),
+            title: new Text("Papua Wamena"),
             onTap: () {},
           ),
           new ListTile(
             leading: new Icon(Icons.arrow_right),
-            title: new Text("Lemon Squash"),
-            subtitle: new Text("Rp. 18.000,00"),
-            onTap: () {},
-          ),
-          new ListTile(
-            leading: new Icon(Icons.arrow_right),
-            title: new Text("Lyche Squash"),
-            subtitle: new Text("Rp. 20.000,00"),
+            title: new Text("Madailing Sipirok"),
             onTap: () {},
           ),
         ],

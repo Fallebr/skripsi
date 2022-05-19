@@ -6,7 +6,7 @@ import 'package:reports/menu_kopi/brew.dart';
 import 'package:reports/menu_kopi/esp.dart';
 import 'package:reports/menu_kopi/single_origin.dart';
 
-class Kopi extends StatelessWidget {
+class KopiMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

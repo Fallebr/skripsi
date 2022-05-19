@@ -33,7 +33,7 @@ class _InventarisState extends State<Inventaris> {
             child: InkWell(
               onTap: () {
                 Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => Snack(),
+                  builder: (context) => SnackInven(),
                 ));
               },
               splashColor: Color(0xff5ac18e),
@@ -81,7 +81,7 @@ class _InventarisState extends State<Inventaris> {
             child: InkWell(
               onTap: () {
                 Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => NonKopi(),
+                  builder: (context) => NonKopiInven(),
                 ));
               },
               splashColor: Color(0xff5ac18e),

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:reports/commons/curved_navbar.dart';
 import 'package:reports/commons/navigation_drawer_widget.dart';
 
-class SnackInven extends StatelessWidget {
+class SnackMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
