@@ -8,7 +8,7 @@ class SnackMenu extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Cek Stok Snack"),
+        title: Text("MENU"),
         backgroundColor: Color(0xff5ac18e),
       ),
       drawer: NavigationDrawerWidget(),
