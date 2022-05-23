@@ -61,46 +61,6 @@ class _ReportState extends State<Report> {
               ),
             ),
           ),
-          Card(
-            margin: const EdgeInsets.all(8),
-            child: InkWell(
-              onTap: () {},
-              splashColor: Color(0xff5ac18e),
-              child: Center(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: const <Widget>[
-                    Icon(
-                      Icons.add_box_outlined,
-                      size: 70,
-                      color: Color(0xff5ac18e),
-                    ),
-                    Text("Barang masuk", style: TextStyle(fontSize: 17.0)),
-                  ],
-                ),
-              ),
-            ),
-          ),
-          Card(
-            margin: const EdgeInsets.all(8),
-            child: InkWell(
-              onTap: () {},
-              splashColor: Color(0xff5ac18e),
-              child: Center(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: const <Widget>[
-                    Icon(
-                      Icons.outbond_outlined,
-                      size: 70,
-                      color: Color(0xff5ac18e),
-                    ),
-                    Text("Barang Keluar", style: TextStyle(fontSize: 17.0)),
-                  ],
-                ),
-              ),
-            ),
-          ),
         ],
       ),
       bottomNavigationBar: CurvedNavigationBar(),

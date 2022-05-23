@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:reports/commons/navigation_drawer_widget.dart';
 import 'package:reports/inventaris/alat_dapur.dart';
-import 'package:reports/inventaris/bahan.dart';
+import 'package:reports/inventaris/kopi_invent.dart';
 import 'package:reports/inventaris/bahan_habis.dart';
 import 'package:reports/inventaris/kemasan.dart';
 import 'package:reports/inventaris/kopi.dart';
@@ -82,30 +82,6 @@ class _InventarisState extends State<Inventaris> {
               onTap: () {
                 Navigator.of(context).push(MaterialPageRoute(
                   builder: (context) => NonKopiInven(),
-                ));
-              },
-              splashColor: Color(0xff5ac18e),
-              child: Center(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: const <Widget>[
-                    Icon(
-                      Icons.icecream_outlined,
-                      size: 70,
-                      color: Color(0xff5ac18e),
-                    ),
-                    Text("Non Kopi", style: TextStyle(fontSize: 17.0)),
-                  ],
-                ),
-              ),
-            ),
-          ),
-          Card(
-            margin: const EdgeInsets.all(8),
-            child: InkWell(
-              onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => Bahan(),
                 ));
               },
               splashColor: Color(0xff5ac18e),
