@@ -84,6 +84,16 @@ class NonKopiInven extends StatelessWidget {
             title: new Text("Lyche Squash"),
             onTap: () {},
           ),
+          new ListTile(
+            leading: new Icon(Icons.arrow_right),
+            title: new Text("Susu Kental Manis"),
+            onTap: () {},
+          ),
+          new ListTile(
+            leading: new Icon(Icons.arrow_right),
+            title: new Text("Gula sachet"),
+            onTap: () {},
+          ),
         ],
       ),
       bottomNavigationBar: CurvedNavigationBar(),

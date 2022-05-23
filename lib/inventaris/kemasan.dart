@@ -16,72 +16,27 @@ class Kemasan extends StatelessWidget {
         children: <Widget>[
           new ListTile(
             leading: new Icon(Icons.arrow_right),
-            title: new Text("Strawberry Frappucino"),
+            title: new Text("cup kecil"),
             onTap: () {},
           ),
           new ListTile(
             leading: new Icon(Icons.arrow_right),
-            title: new Text("Chocolate"),
+            title: new Text("cup besar"),
             onTap: () {},
           ),
           new ListTile(
             leading: new Icon(Icons.arrow_right),
-            title: new Text("Macha Latte"),
+            title: new Text("penutup cup"),
             onTap: () {},
           ),
           new ListTile(
             leading: new Icon(Icons.arrow_right),
-            title: new Text("Oreo"),
+            title: new Text("sedotan"),
             onTap: () {},
           ),
           new ListTile(
             leading: new Icon(Icons.arrow_right),
-            title: new Text("Red Velvet"),
-            onTap: () {},
-          ),
-          new ListTile(
-            leading: new Icon(Icons.arrow_right),
-            title: new Text("Vanilla"),
-            onTap: () {},
-          ),
-          new ListTile(
-            leading: new Icon(Icons.arrow_right),
-            title: new Text("Mocca"),
-            onTap: () {},
-          ),
-          new ListTile(
-            leading: new Icon(Icons.arrow_right),
-            title: new Text("Choco Chezze"),
-            onTap: () {},
-          ),
-          new ListTile(
-            leading: new Icon(Icons.arrow_right),
-            title: new Text("Lemon Tea"),
-            onTap: () {},
-          ),
-          new ListTile(
-            leading: new Icon(Icons.arrow_right),
-            title: new Text("Tarik Tea"),
-            onTap: () {},
-          ),
-          new ListTile(
-            leading: new Icon(Icons.arrow_right),
-            title: new Text("Jasmine Tea"),
-            onTap: () {},
-          ),
-          new ListTile(
-            leading: new Icon(Icons.arrow_right),
-            title: new Text("Lyche Tea"),
-            onTap: () {},
-          ),
-          new ListTile(
-            leading: new Icon(Icons.arrow_right),
-            title: new Text("Lemon Squash"),
-            onTap: () {},
-          ),
-          new ListTile(
-            leading: new Icon(Icons.arrow_right),
-            title: new Text("Lyche Squash"),
+            title: new Text("cup holder"),
             onTap: () {},
           ),
         ],
