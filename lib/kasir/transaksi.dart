@@ -21,9 +21,27 @@ class Transaksi extends StatelessWidget {
                 builder: (context) => dettrans(),
               ));
             }),
-        new ListTile(title: new Text("24 - 5 - 2022"), onTap: () {}),
-        new ListTile(title: new Text("25 - 5 - 2022"), onTap: () {}),
-        new ListTile(title: new Text("26 - 5 - 2022"), onTap: () {}),
+        new ListTile(
+            title: new Text("24 - 5 - 2022"),
+            onTap: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => dettrans(),
+              ));
+            }),
+        new ListTile(
+            title: new Text("25 - 5 - 2022"),
+            onTap: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => dettrans(),
+              ));
+            }),
+        new ListTile(
+            title: new Text("26 - 5 - 2022"),
+            onTap: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => dettrans(),
+              ));
+            }),
       ]),
       bottomNavigationBar: CurvedNavigationBar(),
     );

@@ -14,7 +14,7 @@ class _SecondBarState extends State<SecondBar> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           new Text(
-            "Day                 : ",
+            "Day                 : 23 - 05 -2022 ",
             style: new TextStyle(
                 color: Colors.cyan[900],
                 fontSize: 18,
