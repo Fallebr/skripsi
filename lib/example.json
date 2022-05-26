@@ -1,0 +1,18 @@
+{
+    "products" :[
+        {
+            "id":"e2oxAlgj4IapiKG3ci2v",
+            "harga":17000,
+            "nama" : "tubruk",
+            "kategori": "kopi",
+            "tipe": " brew"
+        },
+        {
+            "id":"e2oxAlgj4IapiKG3ci2v",
+            "harga":17000,
+            "nama" : "tubruk",
+            "kategori": "kopi",
+            "tipe": " brew"
+        }
+    ]
+}

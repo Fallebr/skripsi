@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:reports/login/logAdm.dart';
 import 'package:reports/pages/home.dart';
 
 class SplashScreen extends StatefulWidget {

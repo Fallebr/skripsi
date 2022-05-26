@@ -2,7 +2,6 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:reports/login/logAdm.dart';
-import 'package:reports/login/logOwn.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -42,60 +41,30 @@ class _LoginState extends State<Login> {
             child: Column(
               children: [
                 GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => LogAdm(),
-                        ),
-                      );
-                    },
-                    child: Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(10)),
-                          color: Colors.black87),
-                      child: Padding(
-                        padding: const EdgeInsets.only(
-                            right: 35, left: 35, top: 10, bottom: 10),
-                        child: Text(
-                          'ADMIN',
-                          style: TextStyle(
-                              fontWeight: FontWeight.w800,
-                              fontSize: 17,
-                              color: Colors.white),
-                        ),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => LogAdm(),
                       ),
-                    )),
-                SizedBox(
-                  height: 35,
-                ),
-                GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => LogOwn(),
-                        ),
-                      );
-                    },
-                    child: Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(10)),
-                          color: Colors.black87),
-                      child: Padding(
-                        padding: const EdgeInsets.only(
-                            right: 35, left: 35, top: 10, bottom: 10),
-                        child: Text(
-                          'OWNER',
-                          style: TextStyle(
-                              fontWeight: FontWeight.w800,
-                              fontSize: 17,
-                              color: Colors.white),
-                        ),
+                    );
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                        color: Colors.black87),
+                    child: Padding(
+                      padding: const EdgeInsets.only(
+                          right: 35, left: 35, top: 10, bottom: 10),
+                      child: Text(
+                        'ADMIN',
+                        style: TextStyle(
+                            fontWeight: FontWeight.w800,
+                            fontSize: 17,
+                            color: Colors.white),
                       ),
-                    )),
-                SizedBox(
-                  height: 200,
+                    ),
+                  ),
                 ),
               ],
             ),
