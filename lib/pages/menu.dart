@@ -31,7 +31,7 @@ class Menu extends StatelessWidget {
           title: new Text("NON KOPI"),
           onTap: () {
             Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => NonKopiMenu(),
+              builder: (context) => NonKopi(),
             ));
           },
         ),
@@ -40,7 +40,7 @@ class Menu extends StatelessWidget {
           title: new Text("SNACK"),
           onTap: () {
             Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => SnackMenu(),
+              builder: (context) => Snack(),
             ));
           },
         ),

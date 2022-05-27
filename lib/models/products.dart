@@ -7,8 +7,8 @@ class Product {
 
   Product({this.id, this.harga, this.nama, this.kategori, this.tipe});
 
-  Product.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
+  Product.fromJson(Map<String, dynamic> json, String idDocument) {
+    id = idDocument;
     harga = json['harga'];
     nama = json['nama'];
     kategori = json['kategori'];
