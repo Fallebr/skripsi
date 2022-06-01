@@ -15,13 +15,18 @@ class Product {
     tipe = json['tipe'];
   }
 
+  Product.fromSimpleJson(Map<String, dynamic> json) {
+    harga = json['harga'];
+    nama = json['nama'];
+  }
+
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['harga'] = this.harga;
-    data['nama'] = this.nama;
-    data['kategori'] = this.kategori;
-    data['tipe'] = this.tipe;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['harga'] = harga;
+    data['nama'] = nama;
+    data['kategori'] = kategori;
+    data['tipe'] = tipe;
     return data;
   }
 }

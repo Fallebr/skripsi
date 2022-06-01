@@ -1,10 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:reports/commons/curved_navbar.dart';
 import 'package:reports/commons/navigation_drawer_widget.dart';
+import 'package:reports/kasir/transaction_controller.dart';
 import 'package:reports/pages/menu.dart';
 
 class Kasir2 extends StatelessWidget {
+  final _controller = Get.put(TransactonController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,6 +22,7 @@ class Kasir2 extends StatelessWidget {
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
             child: TextFormField(
+              controller: _controller.namaPelangganController,
               decoration: const InputDecoration(
                 border: UnderlineInputBorder(),
                 labelText: 'Masukan Nama Pelanggan',
@@ -40,6 +44,27 @@ class Kasir2 extends StatelessWidget {
               );
             },
           ),
+
+          //iki gae nampilno list product seng dituku
+          Container(
+            child: (_controller.orders.isNotEmpty)
+                ? Container(
+                    height: 150,
+                    child: ListView(
+                      children: [
+                        for (var order in _controller.orders.value)
+                          ListTile(
+                            title: Text(order.product!.nama!),
+                            subtitle: Text(order.product!.harga.toString()),
+                            trailing: Text(order.qty.toString()),
+                          ),
+                      ],
+                    ),
+                  )
+                : Container(),
+          ),
+          //tutup e
+
           // new ListView.builder(
           //   itemCount: (productsCount == null) ? 0 : productsCount,
           //   itemBuilder: (context, int position) {
@@ -111,7 +136,9 @@ class Kasir2 extends StatelessWidget {
               child: Text("Bayar Sekarang"),
               textColor: Colors.white,
               shape: StadiumBorder(),
-              onPressed: () {},
+              onPressed: () {
+                _controller.sendData();
+              },
             ),
           ),
           new ListTile(

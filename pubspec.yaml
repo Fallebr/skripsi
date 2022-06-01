@@ -37,6 +37,8 @@ dependencies:
   cloud_firestore: ^2.4.0
   get: ^4.6.1
   intl: ^0.17.0
+  charset_converter: ^2.0.0
+  esc_pos_utils: ^1.1.0
   
 
 dev_dependencies: 

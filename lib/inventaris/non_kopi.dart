@@ -26,7 +26,7 @@ class _NonKopiInvenState extends State<NonKopiInven> {
 
   Future initialize() async {
     products = [];
-    products = await service?.getProducts('non kopi');
+    products = await service?.getProducts('ice');
     productsCount = products?.length;
     products = products;
     refresh();

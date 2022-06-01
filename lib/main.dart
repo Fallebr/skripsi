@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:reports/commons/splash_screen.dart';
+import 'package:reports/kasir/transaksi.dart';
 import 'commons/navigation_drawer_widget.dart';
 import 'commons/splash_screen.dart';
+import 'menu_Kopi/brew.dart';
 
 void main() => runApp(MyApp());
 
@@ -11,7 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Report Application',
       theme: ThemeData(primaryColor: Colors.amber),
-      home: SplashScreen(),
+      home: Transaksi(),
     );
   }
 }
