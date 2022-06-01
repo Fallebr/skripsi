@@ -34,8 +34,27 @@ class tipeService {
       for (var result in QuerySnapshot.docs) {
         var encodedResult = jsonEncode(result.data());
         productList.add(Product.fromJson(jsonDecode(encodedResult), result.id));
+        print(encodedResult);
       }
     });
     return productList;
+  }
+}
+
+class TransactionsService {
+  Future<void> getNota(String tipe) async {
+    await Firebase.initializeApp();
+    final Query NotaQuery =
+        FirebaseFirestore.instance.collection('transactions');
+    List<Transaction> transactionList = [];
+    await NotaQuery.get().then((QuerySnapshot) {
+      for (var result in QuerySnapshot.docs) {
+        var encodedResult = jsonEncode(result.data());
+        print(encodedResult);
+        // transactionList
+        //     .add(Nota.fromJson(jsonDecode(encodedResult), result.id));
+      }
+    });
+    // return null;
   }
 }
