@@ -22,3 +22,20 @@ class ProductService {
     return productsList;
   }
 }
+
+class tipeService {
+  Future<List<Product>> getProducts(String tipe) async {
+    await Firebase.initializeApp();
+    final Query productsQuery = FirebaseFirestore.instance
+        .collection('products')
+        .where('tipe', isEqualTo: tipe);
+    List<Product> productList = [];
+    await productsQuery.get().then((QuerySnapshot) {
+      for (var result in QuerySnapshot.docs) {
+        var encodedResult = jsonEncode(result.data());
+        productList.add(Product.fromJson(jsonDecode(encodedResult), result.id));
+      }
+    });
+    return productList;
+  }
+}

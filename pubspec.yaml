@@ -36,6 +36,7 @@ dependencies:
   firebase_auth: any
   cloud_firestore: ^2.4.0
   get: ^4.6.1
+  intl: ^0.17.0
   
 
 dev_dependencies: 

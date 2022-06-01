@@ -16,18 +16,18 @@ class Brew extends StatefulWidget {
 class _BrewState extends State<Brew> {
   int? productsCount;
   List<Product>? products;
-  ProductService? service;
+  tipeService? service;
 
   @override
   void initState() {
-    service = ProductService();
+    service = tipeService();
     initialize();
     super.initState();
   }
 
   Future initialize() async {
     products = [];
-    products = await service?.getProducts('kopi');
+    products = await service?.getProducts('brew');
     productsCount = products?.length;
     products = products;
     refresh();

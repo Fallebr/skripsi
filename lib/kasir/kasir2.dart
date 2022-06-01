@@ -40,26 +40,37 @@ class Kasir2 extends StatelessWidget {
               );
             },
           ),
-          new ListTile(
-            title: new Text("Strawberry Frappucino"),
-            subtitle: Text("Rp. 20.000,00"),
-          ),
-          new ListTile(
-            title: new Text("Ramen"),
-            subtitle: Text("Rp. 10.000,00"),
-          ),
-          new ListTile(
-            title: new Text("SKLP"),
-            subtitle: Text("Rp. 18.000,00"),
-          ),
-          new ListTile(
-            title: new Text("Coklat"),
-            subtitle: Text("Rp. 19.000,00"),
-          ),
-          new ListTile(
-            title: new Text("Indomie gunung"),
-            subtitle: Text("Rp. 15.000,00"),
-          ),
+          // new ListView.builder(
+          //   itemCount: (productsCount == null) ? 0 : productsCount,
+          //   itemBuilder: (context, int position) {
+          //     return ListTile(
+          //       leading: const Icon(Icons.arrow_right),
+          //       title: Text(products![position].nama!),
+          //       subtitle: Text(products![position].harga!.toString()),
+          //       onTap: () {},
+          //     );
+          //   },
+          // ),
+          // ListTile(
+          //   title: new Text("Strawberry Frappucino"),
+          //   subtitle: Text("Rp. 20.000,00"),
+          // ),
+          // new ListTile(
+          //   title: new Text("Ramen"),
+          //   subtitle: Text("Rp. 10.000,00"),
+          // ),
+          // new ListTile(
+          //   title: new Text("SKLP"),
+          //   subtitle: Text("Rp. 18.000,00"),
+          // ),
+          // new ListTile(
+          //   title: new Text("Coklat"),
+          //   subtitle: Text("Rp. 19.000,00"),
+          // ),
+          // new ListTile(
+          //   title: new Text("Indomie gunung"),
+          //   subtitle: Text("Rp. 15.000,00"),
+          // ),
           Container(
             child: (Text(
               " Total Pesanan : Rp. 82.000,00",

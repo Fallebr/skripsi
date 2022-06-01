@@ -16,18 +16,18 @@ class Espresso extends StatefulWidget {
 class _EspressoState extends State<Espresso> {
   int? productsCount;
   List<Product>? products;
-  ProductService? service;
+  tipeService? service;
 
   @override
   void initState() {
-    service = ProductService();
+    service = tipeService();
     initialize();
     super.initState();
   }
 
   Future initialize() async {
     products = [];
-    products = await service?.getProducts('kopi');
+    products = await service?.getProducts('espresso');
     productsCount = products?.length;
     products = products;
     refresh();

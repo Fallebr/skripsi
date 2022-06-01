@@ -16,18 +16,18 @@ class Singo extends StatefulWidget {
 class _SingoState extends State<Singo> {
   int? productsCount;
   List<Product>? products;
-  ProductService? service;
+  tipeService? service;
 
   @override
   void initState() {
-    service = ProductService();
+    service = tipeService();
     initialize();
     super.initState();
   }
 
   Future initialize() async {
     products = [];
-    products = await service?.getProducts('kopi');
+    products = await service?.getProducts('single origin');
     productsCount = products?.length;
     products = products;
     refresh();

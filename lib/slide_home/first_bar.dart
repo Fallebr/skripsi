@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:reports/commons/curved_navbar.dart';
 import 'package:reports/commons/navigation_drawer_widget.dart';
+import 'package:reports/inventaris/non_kopi.dart';
 
 class FirstBar extends StatefulWidget {
   @override
@@ -92,12 +94,13 @@ class DetailFirstBar extends StatefulWidget {
   final String subtitle;
 
   final Icon icon;
-  DetailFirstBar(
-      {required this.color,
-      required this.colorText,
-      required this.title,
-      required this.subtitle,
-      required this.icon});
+  DetailFirstBar({
+    required this.color,
+    required this.colorText,
+    required this.title,
+    required this.subtitle,
+    required this.icon,
+  });
 
   @override
   _DetailFirstBarState createState() => _DetailFirstBarState();
