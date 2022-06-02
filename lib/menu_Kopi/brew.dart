@@ -2,7 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:reports/commons/curved_navbar.dart';
 import 'package:reports/commons/navigation_drawer_widget.dart';
-
+import 'package:reports/kasir/kasir2.dart';
+import '../kasir/transaction_state.dart';
+import '../models/order.dart';
 import '../models/products.dart';
 import '../services/product_services.dart';
 
@@ -52,55 +54,74 @@ class _BrewState extends State<Brew> {
             leading: const Icon(Icons.arrow_right),
             title: Text(products![position].nama!),
             subtitle: Text(products![position].harga!.toString()),
-            onTap: () {},
+            onTap: () {
+              showDialog(
+                context: context,
+                builder: (context) {
+                  return SetQty(
+                    product: products![position],
+                  );
+                },
+              );
+            },
           );
         },
-        // children: <Widget>[
-        //   new ListTile(
-        //     leading: new Icon(Icons.arrow_right),
-        //     title: new Text("Tubruk"),
-        //     subtitle: new Text("Rp. 10.000,00"),
-        //     onTap: () {},
-        //   ),
-        //   new ListTile(
-        //     leading: new Icon(Icons.arrow_right),
-        //     title: new Text("Mokapot"),
-        //     subtitle: new Text("Rp. 12.000,00"),
-        //     onTap: () {},
-        //   ),
-        //   new ListTile(
-        //     leading: new Icon(Icons.arrow_right),
-        //     title: new Text("French Press"),
-        //     subtitle: new Text("Rp. 10.000,00"),
-        //     onTap: () {},
-        //   ),
-        //   new ListTile(
-        //     leading: new Icon(Icons.arrow_right),
-        //     title: new Text("Vietnam Drips"),
-        //     subtitle: new Text("Rp. 14.000,00"),
-        //     onTap: () {},
-        //   ),
-        //   new ListTile(
-        //     leading: new Icon(Icons.arrow_right),
-        //     title: new Text("V60"),
-        //     subtitle: new Text("Rp. 14.000,00"),
-        //     onTap: () {},
-        //   ),
-        //   new ListTile(
-        //     leading: new Icon(Icons.arrow_right),
-        //     title: new Text("Syphon"),
-        //     subtitle: new Text("Rp. 18.000,00"),
-        //     onTap: () {},
-        //   ),
-        //   new ListTile(
-        //     leading: new Icon(Icons.arrow_right),
-        //     title: new Text("Aero Press"),
-        //     subtitle: new Text("Rp. 13.000,00"),
-        //     onTap: () {},
-        //   ),
-        // ],
       ),
       bottomNavigationBar: CurvedNavigationBar(),
+    );
+  }
+}
+
+class SetQty extends StatelessWidget {
+  const SetQty({
+    Key? key,
+    required this.product,
+  }) : super(key: key);
+  final Product product;
+
+  @override
+  Widget build(BuildContext context) {
+    TextEditingController jumlahController = TextEditingController();
+    Widget okButton = TextButton(
+      child: const Text("OK"),
+      onPressed: () {
+        Order order = Order(
+          product: product,
+          qty: jumlahController.text,
+        );
+        TransactionState.addOrder(order);
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => Kasir2(),
+          ),
+        );
+      },
+    );
+    return AlertDialog(
+      backgroundColor: const Color(0xff5ac18e),
+      title: const Text(
+        'Masukkan Jumlah',
+        style: TextStyle(
+          color: Colors.white,
+        ),
+        textAlign: TextAlign.center,
+      ),
+      content: TextField(
+        keyboardType: TextInputType.number,
+        controller: jumlahController,
+        decoration: const InputDecoration(
+          hintText: 'Jumlah',
+          hintStyle: TextStyle(
+            color: Colors.white,
+          ),
+        ),
+        style: const TextStyle(
+          color: Colors.white,
+        ),
+      ),
+      actions: [
+        okButton,
+      ],
     );
   }
 }

@@ -82,18 +82,6 @@ class _CurvedNavigationBarState extends State<CurvedNavigationBar> {
                         ));
                       });
                     }),
-                IconBottomBar(
-                    text: "Report",
-                    icon: Icons.notifications_outlined,
-                    selected: _selectedIndex == 4,
-                    onPressed: () {
-                      setState(() {
-                        _selectedIndex = 4;
-                        Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => Report(),
-                        ));
-                      });
-                    }),
               ],
             ),
           ),

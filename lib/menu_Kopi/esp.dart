@@ -2,7 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:reports/commons/curved_navbar.dart';
 import 'package:reports/commons/navigation_drawer_widget.dart';
-
+import 'package:reports/kasir/kasir2.dart';
+import '../kasir/transaction_state.dart';
+import '../models/order.dart';
 import '../models/products.dart';
 import '../services/product_services.dart';
 
@@ -52,67 +54,74 @@ class _EspressoState extends State<Espresso> {
             leading: const Icon(Icons.arrow_right),
             title: Text(products![position].nama!),
             subtitle: Text(products![position].harga!.toString()),
-            onTap: () {},
+            onTap: () {
+              showDialog(
+                context: context,
+                builder: (context) {
+                  return SetQty(
+                    product: products![position],
+                  );
+                },
+              );
+            },
           );
         },
-        //   children: <Widget>[
-        //     new ListTile(
-        //       leading: new Icon(Icons.arrow_right),
-        //       title: new Text("Espresso"),
-        //       subtitle: new Text("Rp. 9.000,00"),
-        //       onTap: () {},
-        //     ),
-        //     new ListTile(
-        //       leading: new Icon(Icons.arrow_right),
-        //       title: new Text("Machiato"),
-        //       subtitle: new Text("Rp. 12.000,00"),
-        //       onTap: () {},
-        //     ),
-        //     new ListTile(
-        //       leading: new Icon(Icons.arrow_right),
-        //       title: new Text("SKLP"),
-        //       subtitle: new Text("Rp. 18.000,00"),
-        //       onTap: () {},
-        //     ),
-        //     new ListTile(
-        //       leading: new Icon(Icons.arrow_right),
-        //       title: new Text("Cappucino"),
-        //       subtitle: new Text("Rp. 19.000,00"),
-        //       onTap: () {},
-        //     ),
-        //     new ListTile(
-        //       leading: new Icon(Icons.arrow_right),
-        //       title: new Text("Mochacino"),
-        //       subtitle: new Text("Rp. 18.000,00"),
-        //       onTap: () {},
-        //     ),
-        //     new ListTile(
-        //       leading: new Icon(Icons.arrow_right),
-        //       title: new Text("Dopio"),
-        //       subtitle: new Text("Rp. 13.000,00"),
-        //       onTap: () {},
-        //     ),
-        //     new ListTile(
-        //       leading: new Icon(Icons.arrow_right),
-        //       title: new Text("Americano"),
-        //       subtitle: new Text("Rp. 13.000,00"),
-        //       onTap: () {},
-        //     ),
-        //     new ListTile(
-        //       leading: new Icon(Icons.arrow_right),
-        //       title: new Text("Americasu"),
-        //       subtitle: new Text("Rp. 15.000,00"),
-        //       onTap: () {},
-        //     ),
-        //     new ListTile(
-        //       leading: new Icon(Icons.arrow_right),
-        //       title: new Text("Affogato"),
-        //       subtitle: new Text("Rp. 18.000,00"),
-        //       onTap: () {},
-        //     ),
-        //   ],
       ),
       bottomNavigationBar: CurvedNavigationBar(),
+    );
+  }
+}
+
+class SetQty extends StatelessWidget {
+  const SetQty({
+    Key? key,
+    required this.product,
+  }) : super(key: key);
+  final Product product;
+
+  @override
+  Widget build(BuildContext context) {
+    TextEditingController jumlahController = TextEditingController();
+    Widget okButton = TextButton(
+      child: const Text("OK"),
+      onPressed: () {
+        Order order = Order(
+          product: product,
+          qty: jumlahController.text,
+        );
+        TransactionState.addOrder(order);
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => Kasir2(),
+          ),
+        );
+      },
+    );
+    return AlertDialog(
+      backgroundColor: const Color(0xff5ac18e),
+      title: const Text(
+        'Masukkan Jumlah',
+        style: TextStyle(
+          color: Colors.white,
+        ),
+        textAlign: TextAlign.center,
+      ),
+      content: TextField(
+        keyboardType: TextInputType.number,
+        controller: jumlahController,
+        decoration: const InputDecoration(
+          hintText: 'Jumlah',
+          hintStyle: TextStyle(
+            color: Colors.white,
+          ),
+        ),
+        style: const TextStyle(
+          color: Colors.white,
+        ),
+      ),
+      actions: [
+        okButton,
+      ],
     );
   }
 }

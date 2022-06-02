@@ -30,12 +30,6 @@ class NavigationDrawerWidget extends StatelessWidget {
             ),
             const SizedBox(height: 16),
             buildMenuItem(
-              text: 'Laporan',
-              icon: Icons.notifications_outlined,
-              onClicked: () => selectedItem(context, 2),
-            ),
-            const SizedBox(height: 16),
-            buildMenuItem(
               text: 'Inventaris',
               icon: Icons.inventory_2_outlined,
               onClicked: () => selectedItem(context, 3),

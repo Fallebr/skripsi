@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -8,6 +10,7 @@ import 'package:reports/pages/menu.dart';
 
 class Kasir2 extends StatelessWidget {
   final _controller = Get.put(TransactonController());
+  int total_pesanan = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,15 +47,14 @@ class Kasir2 extends StatelessWidget {
               );
             },
           ),
-
-          //iki gae nampilno list product seng dituku
           Container(
             child: (_controller.orders.isNotEmpty)
                 ? Container(
-                    height: 150,
+                    height: 300,
                     child: ListView(
                       children: [
                         for (var order in _controller.orders.value)
+                          // total_pesanan += order.product!.harga * int.parse(order.qty),
                           ListTile(
                             title: Text(order.product!.nama!),
                             subtitle: Text(order.product!.harga.toString()),
@@ -63,42 +65,9 @@ class Kasir2 extends StatelessWidget {
                   )
                 : Container(),
           ),
-          //tutup e
-
-          // new ListView.builder(
-          //   itemCount: (productsCount == null) ? 0 : productsCount,
-          //   itemBuilder: (context, int position) {
-          //     return ListTile(
-          //       leading: const Icon(Icons.arrow_right),
-          //       title: Text(products![position].nama!),
-          //       subtitle: Text(products![position].harga!.toString()),
-          //       onTap: () {},
-          //     );
-          //   },
-          // ),
-          // ListTile(
-          //   title: new Text("Strawberry Frappucino"),
-          //   subtitle: Text("Rp. 20.000,00"),
-          // ),
-          // new ListTile(
-          //   title: new Text("Ramen"),
-          //   subtitle: Text("Rp. 10.000,00"),
-          // ),
-          // new ListTile(
-          //   title: new Text("SKLP"),
-          //   subtitle: Text("Rp. 18.000,00"),
-          // ),
-          // new ListTile(
-          //   title: new Text("Coklat"),
-          //   subtitle: Text("Rp. 19.000,00"),
-          // ),
-          // new ListTile(
-          //   title: new Text("Indomie gunung"),
-          //   subtitle: Text("Rp. 15.000,00"),
-          // ),
           Container(
             child: (Text(
-              " Total Pesanan : Rp. 82.000,00",
+              ' Total Pesanan : Rp. ',
             )),
           ),
           SizedBox(
@@ -117,7 +86,6 @@ class Kasir2 extends StatelessWidget {
                 ]),
             height: 60,
             child: TextField(
-              obscureText: true,
               style: TextStyle(
                 color: Colors.black87,
               ),
@@ -142,7 +110,7 @@ class Kasir2 extends StatelessWidget {
             ),
           ),
           new ListTile(
-            title: new Text("Uang Kembali: Rp.18.000,00"),
+            title: new Text("Uang Kembali: Rp."),
           ),
         ],
       ),
