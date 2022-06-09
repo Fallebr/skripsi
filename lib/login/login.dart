@@ -1,75 +1,95 @@
-import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:reports/login/logAdm.dart';
+import 'package:flutter/src/foundation/key.dart';
+import 'package:flutter/src/widgets/framework.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
 
   @override
-  _LoginState createState() => _LoginState();
+  State<Login> createState() => _LoginState();
 }
 
 class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
-    return Material(
-      child: Stack(
-        children: [
-          Container(
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage('assets/bg-log.jpg'),
-                fit: BoxFit.cover,
-              ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Text(
+          'Email',
+          style: TextStyle(
+              color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
+        ),
+        SizedBox(
+          height: 10,
+        ),
+        Container(
+          alignment: Alignment.centerLeft,
+          decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(10),
+              boxShadow: [
+                BoxShadow(
+                    color: Colors.black26, blurRadius: 6, offset: Offset(0, 1))
+              ]),
+          height: 60,
+          child: TextField(
+            style: TextStyle(
+              color: Colors.black87,
             ),
+            decoration: InputDecoration(
+                border: InputBorder.none,
+                contentPadding: EdgeInsets.only(top: 14),
+                hintText: 'Email',
+                hintStyle: TextStyle(color: Colors.black38)),
           ),
-          Align(
-            alignment: Alignment.center,
-            child: Container(
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage('assets/KLlogo.png'),
-                ),
-              ),
+        ),
+        Text(
+          'Password',
+          style: TextStyle(
+              color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
+        ),
+        SizedBox(
+          height: 10,
+        ),
+        Container(
+          alignment: Alignment.centerLeft,
+          decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(10),
+              boxShadow: [
+                BoxShadow(
+                    color: Colors.black26, blurRadius: 6, offset: Offset(0, 2))
+              ]),
+          height: 60,
+          child: TextField(
+            obscureText: true,
+            style: TextStyle(
+              color: Colors.black87,
             ),
+            decoration: InputDecoration(
+                border: InputBorder.none,
+                contentPadding: EdgeInsets.only(top: 14),
+                prefixIcon: Icon(Icons.lock, color: Color(0xff5ac18e)),
+                hintText: 'Password',
+                hintStyle: TextStyle(color: Colors.black38)),
           ),
-          Positioned(
-            bottom: 0,
-            right: 0,
-            left: 0,
-            child: Column(
-              children: [
-                GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => LogAdm(),
-                      ),
-                    );
-                  },
-                  child: Container(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(10)),
-                        color: Colors.black87),
-                    child: Padding(
-                      padding: const EdgeInsets.only(
-                          right: 35, left: 35, top: 10, bottom: 10),
-                      child: Text(
-                        'ADMIN',
-                        style: TextStyle(
-                            fontWeight: FontWeight.w800,
-                            fontSize: 17,
-                            color: Colors.white),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          )
-        ],
+        ),
+      ],
+    );
+  }
+
+  Widget lupaSandi(BuildContext context) {
+    return Container(
+      alignment: Alignment.centerRight,
+      child: FlatButton(
+        onPressed: () {},
+        padding: EdgeInsets.only(right: 0),
+        child: Text(
+          'Forgot Password',
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+        ),
       ),
     );
   }

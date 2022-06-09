@@ -13,6 +13,8 @@ class Order {
     qty = json['qty'];
   }
 
+  get tanggal => null;
+
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     if (product != null) {

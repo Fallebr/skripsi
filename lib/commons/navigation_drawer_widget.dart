@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:reports/login/logadm.dart';
 import 'package:reports/main.dart';
-import 'package:reports/login/login.dart';
 import 'package:reports/pages/kasir.dart';
 import 'package:reports/pages/inventaris.dart';
 import 'package:reports/pages/report.dart';
@@ -28,19 +28,23 @@ class NavigationDrawerWidget extends StatelessWidget {
               icon: Icons.money_outlined,
               onClicked: () => selectedItem(context, 1),
             ),
-            const SizedBox(height: 16),
-            buildMenuItem(
-              text: 'Inventaris',
-              icon: Icons.inventory_2_outlined,
-              onClicked: () => selectedItem(context, 3),
-            ),
+            // const SizedBox(height: 16),
+            // buildMenuItem(
+            //   text: 'Inventaris',
+            //   icon: Icons.inventory_2_outlined,
+            //   onClicked: () => selectedItem(context, 3),
+            // ),
             const SizedBox(height: 16),
             Divider(color: Colors.white70),
             const SizedBox(height: 400),
             buildMenuItem(
               text: 'Logout',
               icon: Icons.logout_outlined,
-              onClicked: () => selectedItem(context, 4),
+              onClicked: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => LogAdm(),
+                ));
+              },
             ),
           ],
         ),
@@ -82,11 +86,6 @@ class NavigationDrawerWidget extends StatelessWidget {
       case 3:
         Navigator.of(context).push(MaterialPageRoute(
           builder: (context) => Inventaris(),
-        ));
-        break;
-      case 4:
-        Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => Login(),
         ));
         break;
     }

@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:reports/commons/curved_navbar.dart';
 import 'package:reports/commons/navigation_drawer_widget.dart';
 import 'package:reports/inventaris/non_kopi.dart';
+import 'package:reports/kasir/kasir2.dart';
 
 class FirstBar extends StatefulWidget {
   @override
@@ -19,69 +20,24 @@ class _FirstBarState extends State<FirstBar> {
           padding: new EdgeInsets.only(left: 15, bottom: 5, right: 15),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              new Text(
-                "Pengecek Cepat",
-                style: new TextStyle(
-                    color: Colors.cyan[900],
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold),
-              ),
-            ],
+            children: [],
           ),
         ),
         Container(
-          height: 90,
-          child: ListView(
-            scrollDirection: Axis.horizontal,
-            children: <Widget>[
-              DetailFirstBar(
-                title: "Stok Kopi",
-                subtitle: "Klik Disini",
-                colorText: Colors.yellow,
-                icon: Icon(
-                  Icons.coffee,
-                  size: 30,
-                  color: Colors.white,
-                ),
-                color: Color(0xFF0097A7),
-              ),
-              DetailFirstBar(
-                title: "Stok Non Kopi",
-                subtitle: "Klik Disini",
-                colorText: Colors.yellow,
-                icon: Icon(
-                  Icons.icecream,
-                  size: 30,
-                  color: Colors.white,
-                ),
-                color: Color(0xFF0288D1),
-              ),
-              DetailFirstBar(
-                title: "Stok Snack",
-                subtitle: "Klik Disini",
-                colorText: Colors.yellow,
-                icon: Icon(
-                  Icons.fastfood,
-                  size: 30,
-                  color: Colors.white,
-                ),
-                color: Color(0xFFF50057),
-              ),
-              DetailFirstBar(
-                title: "Barang Habis",
-                subtitle: "Klik Disini",
-                colorText: Colors.yellow,
-                icon: Icon(
-                  Icons.outbox,
-                  size: 30,
-                  color: Colors.white,
-                ),
-                color: Color(0xFF4A148C),
-              ),
-            ],
-          ),
-        )
+          // height: 90,
+          child: (ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              primary: Color(0xff5ac18e), // background
+              onPrimary: Colors.white, // foreground
+            ),
+            onPressed: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => Kasir2(),
+              ));
+            },
+            child: Text('go to the cashier'),
+          )),
+        ),
       ],
     );
   }

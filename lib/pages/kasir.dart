@@ -97,30 +97,30 @@ class _KasirState extends State<Kasir> {
               ),
             ),
           ),
-          Card(
-            margin: const EdgeInsets.all(8),
-            child: InkWell(
-              onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => Inventaris(),
-                ));
-              },
-              splashColor: Color(0xff5ac18e),
-              child: Center(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: const <Widget>[
-                    Icon(
-                      Icons.inventory_2_outlined,
-                      size: 70,
-                      color: Color(0xff5ac18e),
-                    ),
-                    Text("Inventaris", style: TextStyle(fontSize: 17.0)),
-                  ],
-                ),
-              ),
-            ),
-          ),
+          // Card(
+          //   margin: const EdgeInsets.all(8),
+          //   child: InkWell(
+          //     onTap: () {
+          //       Navigator.of(context).push(MaterialPageRoute(
+          //         builder: (context) => Inventaris(),
+          //       ));
+          //     },
+          //     splashColor: Color(0xff5ac18e),
+          //     child: Center(
+          //       child: Column(
+          //         mainAxisSize: MainAxisSize.min,
+          //         children: const <Widget>[
+          //           Icon(
+          //             Icons.inventory_2_outlined,
+          //             size: 70,
+          //             color: Color(0xff5ac18e),
+          //           ),
+          //           Text("Inventaris", style: TextStyle(fontSize: 17.0)),
+          //         ],
+          //       ),
+          //     ),
+          //   ),
+          // ),
         ],
       ),
       bottomNavigationBar: CurvedNavigationBar(),

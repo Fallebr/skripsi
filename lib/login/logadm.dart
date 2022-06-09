@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:reports/commons/navigation_drawer_widget.dart';
 import 'package:reports/login/Logadm.dart';
-import 'package:reports/login/login.dart';
+import 'package:reports/login/register.dart';
 import 'package:reports/main.dart';
 import 'package:reports/pages/home.dart';
 
@@ -36,8 +36,7 @@ Widget buildPwd(TextEditingController passwordController) {
             ]),
         height: 60,
         child: TextField(
-          controller: passwordController,
-          obscureText: true,
+          //auth disini ygy
           style: TextStyle(
             color: Colors.black87,
           ),
@@ -200,7 +199,7 @@ class _LogAdmState extends State<LogAdm> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           Text(
-                            'Masukan Password',
+                            'Hello! ',
                             style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 40,

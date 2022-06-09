@@ -50,11 +50,12 @@ class Kasir2 extends StatelessWidget {
           Container(
             child: (_controller.orders.isNotEmpty)
                 ? Container(
-                    height: 300,
+                    height: 200,
                     child: ListView(
                       children: [
                         for (var order in _controller.orders.value)
-                          // total_pesanan += order.product!.harga * int.parse(order.qty),
+                          // total_pesanan +=
+                          //     order.product!.harga * int.parse(order.qty),
                           ListTile(
                             title: Text(order.product!.nama!),
                             subtitle: Text(order.product!.harga.toString()),

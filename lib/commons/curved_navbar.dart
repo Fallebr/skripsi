@@ -59,18 +59,6 @@ class _CurvedNavigationBarState extends State<CurvedNavigationBar> {
                       });
                     }),
                 IconBottomBar(
-                    text: "Inventory",
-                    icon: Icons.inventory_2_outlined,
-                    selected: _selectedIndex == 2,
-                    onPressed: () {
-                      setState(() {
-                        Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => Inventaris(),
-                        ));
-                        _selectedIndex = 2;
-                      });
-                    }),
-                IconBottomBar(
                     text: "kasir",
                     icon: Icons.money_outlined,
                     selected: _selectedIndex == 3,

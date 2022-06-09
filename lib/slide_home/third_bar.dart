@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class ThirdBar extends StatefulWidget {
   @override
@@ -14,7 +15,15 @@ class _ThirdBarState extends State<ThirdBar> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           new Text(
-            "Nota Keluar  : ",
+            "Income           : ",
+            style: new TextStyle(
+                color: Colors.cyan[900],
+                fontSize: 18,
+                fontWeight: FontWeight.bold),
+          ),
+          Text(
+            DateFormat.Hms().format(DateTime.now()),
+            textAlign: TextAlign.left,
             style: new TextStyle(
                 color: Colors.cyan[900],
                 fontSize: 18,
