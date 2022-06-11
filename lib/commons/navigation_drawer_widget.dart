@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:reports/login/logadm.dart';
@@ -5,9 +6,11 @@ import 'package:reports/main.dart';
 import 'package:reports/pages/kasir.dart';
 import 'package:reports/pages/inventaris.dart';
 import 'package:reports/pages/report.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class NavigationDrawerWidget extends StatelessWidget {
   final Padding = EdgeInsets.symmetric(horizontal: 20);
+  // final user = FirebaseAuth.instance.currentUser;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +21,7 @@ class NavigationDrawerWidget extends StatelessWidget {
           children: <Widget>[
             const SizedBox(height: 48),
             buildMenuItem(
-              text: 'Admin',
+              text: 'Hello!',
               icon: Icons.people,
               onClicked: () => selectedItem(context, 0),
             ),

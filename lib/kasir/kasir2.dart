@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:reports/commons/curved_navbar.dart';
 import 'package:reports/commons/navigation_drawer_widget.dart';
 import 'package:reports/kasir/transaction_controller.dart';
+import 'package:reports/kasir/transaction_state.dart';
 import 'package:reports/pages/menu.dart';
 
 class Kasir2 extends StatelessWidget {
@@ -51,54 +52,63 @@ class Kasir2 extends StatelessWidget {
             child: (_controller.orders.isNotEmpty)
                 ? Container(
                     height: 200,
-                    child: ListView(
-                      children: [
-                        for (var order in _controller.orders.value)
-                          // total_pesanan +=
-                          //     order.product!.harga * int.parse(order.qty),
-                          ListTile(
-                            title: Text(order.product!.nama!),
-                            subtitle: Text(order.product!.harga.toString()),
-                            trailing: Text(order.qty.toString()),
-                          ),
-                      ],
+                    child: Obx(
+                      () => ListView(
+                        children: [
+                          for (var order in _controller.orders.value)
+                            // total_pesanan +=
+                            //     order.product!.harga * int.parse(order.qty),
+                            ListTile(
+                              title: Text(order.product!.nama!),
+                              subtitle: Text(order.product!.harga.toString()),
+                              trailing: Text(order.qty.toString()),
+                              onTap: () {
+                                TransactionState.removeOrder(order);
+                              },
+                            ),
+                        ],
+                      ),
                     ),
                   )
                 : Container(),
           ),
           Container(
-            child: (Text(
-              ' Total Pesanan : Rp. ',
-            )),
+            child: Obx(
+              () => (Text(
+                ' Total Pesanan : Rp. ' +
+                    TransactionState.totalOrder.value.toString(),
+              )),
+            ),
           ),
           SizedBox(
             height: 10,
           ),
-          Container(
-            alignment: Alignment.centerLeft,
-            decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(10),
-                boxShadow: [
-                  BoxShadow(
-                      color: Colors.black26,
-                      blurRadius: 6,
-                      offset: Offset(0, 2))
-                ]),
-            height: 60,
-            child: TextField(
-              style: TextStyle(
-                color: Colors.black87,
-              ),
-              decoration: InputDecoration(
-                  border: InputBorder.none,
-                  contentPadding: EdgeInsets.only(top: 14),
-                  prefixIcon:
-                      Icon(Icons.attach_money, color: Color(0xff5ac18e)),
-                  hintText: 'Masukan uang diterima',
-                  hintStyle: TextStyle(color: Colors.black38)),
-            ),
-          ),
+          // Container(
+          //   alignment: Alignment.centerLeft,
+          //   decoration: BoxDecoration(
+          //       color: Colors.white,
+          //       borderRadius: BorderRadius.circular(10),
+          //       boxShadow: [
+          //         BoxShadow(
+          //             color: Colors.black26,
+          //             blurRadius: 6,
+          //             offset: Offset(0, 2))
+          //       ]),
+          //   height: 60,
+          //   child: TextField(
+          //     style: TextStyle(
+          //       color: Colors.black87,
+          //     ),
+          //     decoration: InputDecoration(
+          //         border: InputBorder.none,
+          //         contentPadding: EdgeInsets.only(top: 14),
+          //         prefixIcon:
+          //             Icon(Icons.attach_money, color: Color(0xff5ac18e)),
+          //         hintText: 'Masukan uang diterima',
+          //         hintStyle: TextStyle(color: Colors.black38)),
+          //     controller: _controller.UangPelanggaController,
+          //   ),
+          // ),
           Container(
             child: RaisedButton(
               color: Color(0xff5ac18e),
@@ -107,12 +117,14 @@ class Kasir2 extends StatelessWidget {
               shape: StadiumBorder(),
               onPressed: () {
                 _controller.sendData();
+                // _controller.namaPelangganController.text = '';
+                // TransactionState.cleanOrder();
               },
             ),
           ),
-          new ListTile(
-            title: new Text("Uang Kembali: Rp."),
-          ),
+          // new ListTile(
+          //   title: new Text("Uang Kembali: Rp."+ _controller.UangPelanggaController -= ),
+          // ),
         ],
       ),
       bottomNavigationBar: CurvedNavigationBar(),

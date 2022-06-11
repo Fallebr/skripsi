@@ -1,38 +1,25 @@
-import 'dart:developer';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:reports/app.dart';
 
-import 'package:flutter/material.dart';
-import 'package:reports/commons/splash_screen.dart';
-import 'package:reports/kasir/transaksi.dart';
-import 'package:reports/login/logadm.dart';
-import 'package:reports/login/login.dart';
-import 'commons/navigation_drawer_widget.dart';
-import 'commons/splash_screen.dart';
-import 'menu_Kopi/brew.dart';
-
-void main() => runApp(MyApp());
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Report Application',
-      theme: ThemeData(primaryColor: Colors.amber),
-      home: SplashScreen(),
-      debugShowCheckedModeBanner: false,
-    );
-  }
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(App());
 }
-
-class MyHomePage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Selamat Datang!"),
-        backgroundColor: Color(0xff5ac18e),
-      ),
-      drawer: NavigationDrawerWidget(),
-      body: ListView(),
-    );
-  }
-}
+// StreamBuilder<User?>(
+//         stream: FirebaseAuth.instance.authStateChanges(),
+//         builder: (context, snapshot) {
+//           // if (snapshot.connectionState == ConnectionState.waiting) {
+//           //   return Center(child: CircularProgressIndicator());
+//           // } else if (snapshot.hasError) {
+//           //   return Center(child: Text('Something went error!'));
+//           // } else
+//           if (snapshot.hasData) {
+//             return Home();
+//           } else {
+//             return LogAdm();
+//           }
+//         },
+//       ),

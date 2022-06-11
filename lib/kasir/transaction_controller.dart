@@ -10,8 +10,10 @@ import '../models/order.dart';
 class TransactonController extends GetxController {
   RxObjectMixin<Nota> nota = Nota().obs;
   RxList<Order> orders = <Order>[].obs;
+  RxInt totalOrder = 0.obs;
 
   TextEditingController namaPelangganController = TextEditingController();
+  TextEditingController UangPelanggaController = TextEditingController();
 
   TransactonController() {
     orders.value = TransactionState.orders;
@@ -20,8 +22,8 @@ class TransactonController extends GetxController {
   void sendData() {
     nota.value.pelanggan = namaPelangganController.text;
     nota.value.orders = orders.value;
-    nota.value.tanggal = DateFormat.yMMMEd().format(DateTime.now());
-    nota.value.total = '0';
+    nota.value.tanggal = DateFormat.yMEd().add_jms().format(DateTime.now());
+    nota.value.totalOrder = TransactionState.totalOrder.value.toString();
     TransactionService.addNota(nota.value);
   }
 }

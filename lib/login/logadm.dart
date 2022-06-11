@@ -1,220 +1,249 @@
 import 'dart:ui';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get_navigation/get_navigation.dart';
 import 'package:reports/commons/navigation_drawer_widget.dart';
 import 'package:reports/login/Logadm.dart';
 import 'package:reports/login/register.dart';
 import 'package:reports/main.dart';
 import 'package:reports/pages/home.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class LogAdm extends StatefulWidget {
   @override
   _LogAdmState createState() => _LogAdmState();
 }
 
-Widget buildPwd(TextEditingController passwordController) {
-  return Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: <Widget>[
-      Text(
-        'Email',
-        style: TextStyle(
-            color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
-      ),
-      SizedBox(
-        height: 10,
-      ),
-      Container(
-        alignment: Alignment.centerLeft,
-        decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(10),
-            boxShadow: [
-              BoxShadow(
-                  color: Colors.black26, blurRadius: 6, offset: Offset(0, 2))
-            ]),
-        height: 60,
-        child: TextField(
-          //auth disini ygy
-          style: TextStyle(
-            color: Colors.black87,
-          ),
-          decoration: InputDecoration(
-              border: InputBorder.none,
-              contentPadding: EdgeInsets.only(top: 14),
-              prefixIcon: Icon(Icons.email, color: Color(0xff5ac18e)),
-              hintText: 'Email',
-              hintStyle: TextStyle(color: Colors.black38)),
-        ),
-      ),
-      Text(
-        'Password',
-        style: TextStyle(
-            color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
-      ),
-      SizedBox(
-        height: 10,
-      ),
-      Container(
-        alignment: Alignment.centerLeft,
-        decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(10),
-            boxShadow: [
-              BoxShadow(
-                  color: Colors.black26, blurRadius: 6, offset: Offset(0, 2))
-            ]),
-        height: 60,
-        child: TextField(
-          controller: passwordController,
-          obscureText: true,
-          style: TextStyle(
-            color: Colors.black87,
-          ),
-          decoration: InputDecoration(
-              border: InputBorder.none,
-              contentPadding: EdgeInsets.only(top: 14),
-              prefixIcon: Icon(Icons.lock, color: Color(0xff5ac18e)),
-              hintText: 'Password',
-              hintStyle: TextStyle(color: Colors.black38)),
-        ),
-      ),
-    ],
-  );
-}
-
-Widget buildLpSnd(BuildContext context) {
-  return Container(
-    alignment: Alignment.centerRight,
-    child: FlatButton(
-      onPressed: () {
-        showDialog(
-            context: context,
-            builder: (context) {
-              return AlertDialog(
-                backgroundColor: Color(0xff5ac18e),
-                title: Text(
-                  'INFORMASI',
-                  style: TextStyle(
-                    color: Colors.white,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-                content: Text(
-                  'Hubungi Manager Untuk Mengetahui Sandi Anda',
-                  style: TextStyle(
-                    color: Colors.white,
-                  ),
-                ),
-              );
-            });
-      },
-      padding: EdgeInsets.only(right: 0),
-      child: Text(
-        'Forgot Password?',
-        style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-      ),
-    ),
-  );
-}
-
-Widget buildLogbtn(
-    TextEditingController passwordController, BuildContext context) {
-  return Container(
-    padding: EdgeInsets.symmetric(vertical: 25),
-    width: double.infinity,
-    child: RaisedButton(
-      elevation: 5,
-      onPressed: () {
-        if (passwordController.text == '12') {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => Home(),
-            ),
-          );
-        } else {
-          showDialog(
-              context: context,
-              builder: (context) {
-                return AlertDialog(
-                  backgroundColor: Color(0xff5ac18e),
-                  title: Text(
-                    'INFORMASI',
-                    style: TextStyle(
-                      color: Colors.white,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                  content: Text(
-                    'Password Salah!',
-                    style: TextStyle(
-                      color: Colors.white,
-                    ),
-                  ),
-                );
-              });
-        }
-      },
-      padding: EdgeInsets.all(15),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-      color: Colors.white,
-      child: Text(
-        'Login',
-        style: TextStyle(
-            color: Color(0xff5ac18e),
-            fontSize: 18,
-            fontWeight: FontWeight.bold),
-      ),
-    ),
-  );
-}
+GoogleSignIn _googleSignIn = GoogleSignIn(scopes: ['email']);
 
 class _LogAdmState extends State<LogAdm> {
+  late String _email, _password;
+  final auth = FirebaseAuth.instance;
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  // final google = GoogleSignIn();
+  GoogleSignInAccount? user;
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    TextEditingController passwordController = TextEditingController();
+    GoogleSignInAccount? user = _googleSignIn.currentUser;
     return Scaffold(
-        body: AnnotatedRegion<SystemUiOverlayStyle>(
-            value: SystemUiOverlayStyle.light,
-            child: GestureDetector(
-              child: Stack(
-                children: <Widget>[
-                  Container(
-                    height: double.infinity,
-                    width: double.infinity,
+      backgroundColor: Colors.grey[300],
+      body: SafeArea(
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset(
+                'assets/KLlogo.png',
+                width: 80,
+                height: 80,
+              ),
+              //hello
+              Text(
+                'Hello Again!',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 36,
+                ),
+              ),
+              SizedBox(height: 10),
+              Text(
+                'Welcome back to Kopi Letek Cashier Apps',
+                style: TextStyle(
+                  fontSize: 18,
+                ),
+              ),
+              SizedBox(
+                height: 50,
+              ),
+              //email field
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                child: Container(
+                  decoration: BoxDecoration(
+                      color: Colors.grey[200],
+                      border: Border.all(color: Colors.white),
+                      borderRadius: BorderRadius.circular(12)),
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 20.0),
+                    child: TextField(
+                      keyboardType: TextInputType.emailAddress,
+                      controller: emailController,
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        hintText: 'Email',
+                      ),
+                      onChanged: (value) {
+                        setState(() {
+                          _email = value.trim();
+                        });
+                      },
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              //password field
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                child: Container(
+                  decoration: BoxDecoration(
+                      color: Colors.grey[200],
+                      border: Border.all(color: Colors.white),
+                      borderRadius: BorderRadius.circular(12)),
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 20.0),
+                    child: TextField(
+                      controller: passwordController,
+                      obscureText: true,
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        hintText: 'Password',
+                      ),
+                      onChanged: (value) {
+                        setState(() {
+                          _password = value.trim();
+                        });
+                      },
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              //sign in button
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                child: InkWell(
+                  child: Container(
+                    padding: EdgeInsets.all(20),
                     decoration: BoxDecoration(
-                        gradient: LinearGradient(colors: [
-                      Color(0x665ac18e),
-                      Color(0x995ac18e),
-                      Color(0xcc5ac18e),
-                      Color(0xff5ac18e),
-                    ])),
-                    child: SingleChildScrollView(
-                      physics: AlwaysScrollableScrollPhysics(),
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 25, vertical: 120),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Text(
-                            'Hello! ',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 40,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          SizedBox(height: 50),
-                          buildPwd(passwordController),
-                          buildLpSnd(context),
-                          buildLogbtn(passwordController, context),
-                        ],
+                      color: Color(0xff5ac18e),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Center(
+                      child: Text(
+                        'Sign In',
+                        style: TextStyle(
+                            color: Colors.white, fontWeight: FontWeight.bold),
                       ),
                     ),
-                  )
+                  ),
+                  onTap: () {
+                    auth.signInWithEmailAndPassword(
+                        email: _email, password: _password);
+                    Navigator.of(context).pushReplacement(MaterialPageRoute(
+                      builder: (context) => Home(),
+                    ));
+                  },
+                ),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              //loggoogle
+              // Padding(
+              //   padding: const EdgeInsets.symmetric(horizontal: 25.0),
+              //   child: InkWell(
+              //     child: Container(
+              //       padding: EdgeInsets.all(20),
+              //       decoration: BoxDecoration(
+              //         color: Color(0xff5ac18e),
+              //         borderRadius: BorderRadius.circular(12),
+              //       ),
+              //       child: Center(
+              //         child: Text(
+              //           'Login with Google?',
+              //           style: TextStyle(
+              //               color: Colors.white, fontWeight: FontWeight.bold),
+              //         ),
+              //       ),
+              //     ),
+              //     onTap: () {
+              // await _googleSignIn.signIn();
+              // try {
+              //   final googleMethod = await google.signIn();
+              //   user = googleMethod;
+              //   final auth = await googleMethod!.authentication;
+              //   final cred = GoogleAuthProvider.credential(
+              //       accessToken: auth.idToken, idToken: auth.idToken);
+              //   await FirebaseAuth.instance
+              //       .signInWithCredential(cred)
+              //       .whenComplete(
+              //         () => Navigator.of(context).push(MaterialPageRoute(
+              //           builder: (context) => Home(),
+              //         )),
+              //       );
+              // } catch (e) {
+              //   print(e);
+              // }
+              //       Navigator.of(context).push(MaterialPageRoute(
+              //         builder: (context) => Home(),
+              //       ));
+              //     },
+              //   ),
+              // ),
+              //register button,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text('Not a member?'),
+                  Text(
+                    'Register now!',
+                    style: TextStyle(
+                      color: Colors.blue,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                 ],
               ),
-            )));
+              SizedBox(
+                height: 25,
+              ),
+              //Login google
+            ],
+          ),
+        ),
+      ),
+    );
   }
+
+  // Future signIn() async {
+  //   showDialog(
+  //       context: context,
+  //       barrierDismissible: false,
+  //       builder: (context) => Center(child: CircularProgressIndicator()));
+  //   try {
+  //     await FirebaseAuth.instance.signInWithEmailAndPassword(
+  //       email: emailController.text.trim(),
+  //       password: passwordController.text.trim(),
+  //     );
+  //   } on FirebaseAuthException catch (e) {
+  //     print(e);
+  //   }
+  //   navigatorKey.currentState!.popUntil((route) => route.isFirst);
+  // }
+
+//   Future GoogleSignIn<void> _incrementCounter() async {
+//   setState(() {
+//     _counter++;
+//   });
+//   Directory directory = await getApplicationDocumentsDirectory();
+//   final String dirName = directory.path;
+//   await File('$dir/counter.txt').writeAsString('$_counter');
+// }
 }
