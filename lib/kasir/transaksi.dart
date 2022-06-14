@@ -46,7 +46,6 @@ class _TransaksiState extends State<Transaksi> {
         backgroundColor: Color(0xff5ac18e),
       ),
       drawer: NavigationDrawerWidget(),
-
       body: ListView.builder(
         itemCount: (notaCount == null) ? 0 : notaCount,
         itemBuilder: (context, int position) {
@@ -54,55 +53,17 @@ class _TransaksiState extends State<Transaksi> {
             leading: const Icon(Icons.arrow_right),
             title: Text(nota![position].pelanggan!),
             subtitle: Text(nota![position].tanggal!.toString()),
-            // trailing: Text(
-            //   DateFormat.Hms().format(DateTime.now()),
-            //   textAlign: TextAlign.left,
-            //   style: new TextStyle(
-            //       color: Colors.cyan[900],
-            //       fontSize: 18,
-            //       fontWeight: FontWeight.bold),
-            // ),
             onTap: () {
               Navigator.of(context).push(MaterialPageRoute(
                 builder: (context) => DetailTransaksi(
                   orders: nota![position].orders!,
+                  nota: nota![position],
                 ),
               ));
             },
           );
         },
       ),
-
-      // body: ListView(children: <Widget>[
-      //   new ListTile(
-      //       title: new Text("23 - 5 - 2022"),
-      //       onTap: () {
-      //         Navigator.of(context).push(MaterialPageRoute(
-      //           builder: (context) => dettrans(),
-      //         ));
-      //       }),
-      //   new ListTile(
-      //       title: new Text("24 - 5 - 2022"),
-      //       onTap: () {
-      //         Navigator.of(context).push(MaterialPageRoute(
-      //           builder: (context) => dettrans(),
-      //         ));
-      //       }),
-      //   new ListTile(
-      //       title: new Text("25 - 5 - 2022"),
-      //       onTap: () {
-      //         Navigator.of(context).push(MaterialPageRoute(
-      //           builder: (context) => dettrans(),
-      //         ));
-      //       }),
-      //   new ListTile(
-      //       title: new Text("26 - 5 - 2022"),
-      //       onTap: () {
-      //         Navigator.of(context).push(MaterialPageRoute(
-      //           builder: (context) => dettrans(),
-      //         ));
-      //       }),
-      // ]),
       bottomNavigationBar: CurvedNavigationBar(),
     );
   }

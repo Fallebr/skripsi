@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:reports/kasir/transaksi.dart';
-import 'package:reports/login/Logadm.dart';
+import 'package:reports/login/logadm.dart';
 
 class App extends StatelessWidget {
   @override
@@ -11,7 +11,7 @@ class App extends StatelessWidget {
       title: 'Pos App',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(accentColor: Colors.orange, primarySwatch: Colors.blue),
-      home: Transaksi(),
+      home: LogAdm(),
     );
   }
 }

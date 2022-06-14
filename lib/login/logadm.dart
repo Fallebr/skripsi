@@ -198,19 +198,19 @@ class _LogAdmState extends State<LogAdm> {
               //   ),
               // ),
               //register button,
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text('Not a member?'),
-                  Text(
-                    'Register now!',
-                    style: TextStyle(
-                      color: Colors.blue,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
-              ),
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.center,
+              //   children: [
+              //     Text('Not a member?'),
+              //     Text(
+              //       'Register now!',
+              //       style: TextStyle(
+              //         color: Colors.blue,
+              //         fontWeight: FontWeight.bold,
+              //       ),
+              //     ),
+              //   ],
+              // ),
               SizedBox(
                 height: 25,
               ),
