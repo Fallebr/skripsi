@@ -23,30 +23,45 @@ class Kasir2 extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
+          SizedBox(
+            height: 10,
+          ),
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
-            child: TextFormField(
-              controller: _controller.namaPelangganController,
-              decoration: const InputDecoration(
-                border: UnderlineInputBorder(),
-                labelText: 'Masukan Nama Pelanggan',
-                fillColor: Color(0xff5ac18e),
+            padding: const EdgeInsets.symmetric(horizontal: 25.0),
+            child: Container(
+              decoration: BoxDecoration(
+                  color: Colors.grey[200],
+                  border: Border.all(color: Colors.white),
+                  borderRadius: BorderRadius.circular(12)),
+              child: Padding(
+                padding: const EdgeInsets.only(left: 20.0),
+                child: TextFormField(
+                  controller: _controller.namaPelangganController,
+                  decoration: const InputDecoration(
+                    // border: UnderlineInputBorder(),
+                    labelText: 'Masukan Nama Pelanggan',
+                    fillColor: Color(0xff5ac18e),
+                  ),
+                ),
               ),
             ),
           ),
-          RaisedButton(
-            color: Color(0xff5ac18e),
-            child: Text("tambahkan pesanan"),
-            textColor: Colors.white,
-            shape: StadiumBorder(),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => Menu(),
-                ),
-              );
-            },
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 25.0),
+            child: RaisedButton(
+              color: Color(0xff5ac18e),
+              child: Text("tambahkan pesanan"),
+              textColor: Colors.white,
+              shape: StadiumBorder(),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => Menu(),
+                  ),
+                );
+              },
+            ),
           ),
           Container(
             child: (_controller.orders.isNotEmpty)
@@ -72,12 +87,15 @@ class Kasir2 extends StatelessWidget {
                   )
                 : Container(),
           ),
-          Container(
-            child: Obx(
-              () => (Text(
-                ' Total Pesanan : Rp. ' +
-                    TransactionState.totalOrder.value.toString(),
-              )),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 25.0),
+            child: Container(
+              child: Obx(
+                () => (Text(
+                  ' Total Pesanan : Rp. ' +
+                      TransactionState.totalOrder.value.toString(),
+                )),
+              ),
             ),
           ),
           SizedBox(
@@ -106,24 +124,69 @@ class Kasir2 extends StatelessWidget {
           //             Icon(Icons.attach_money, color: Color(0xff5ac18e)),
           //         hintText: 'Masukan uang diterima',
           //         hintStyle: TextStyle(color: Colors.black38)),
-          //     controller: _controller.UangPelanggaController,
+          //     controller: _controller.uangPelangganController,
           //   ),
           // ),
-          Container(
-            child: RaisedButton(
-              color: Color(0xff5ac18e),
-              child: Text("Bayar Sekarang"),
-              textColor: Colors.white,
-              shape: StadiumBorder(),
-              onPressed: () {
-                _controller.sendData();
-                // _controller.namaPelangganController.text = '';
-                // TransactionState.cleanOrder();
-              },
+          //input uang pelanggan
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 25.0),
+            child: Container(
+              decoration: BoxDecoration(
+                  color: Colors.grey[200],
+                  border: Border.all(color: Colors.white),
+                  borderRadius: BorderRadius.circular(12)),
+              child: const Padding(
+                padding: const EdgeInsets.only(left: 20.0),
+                child: TextField(
+                  keyboardType: TextInputType.number,
+                  // controller: uangPelangganController,
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    hintText: 'Masukan Uang Pelanggan',
+                  ),
+                  // onChanged: (){};
+                ),
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          //Teks kembalian
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 25.0),
+            child: Container(
+              decoration: BoxDecoration(
+                  color: Colors.grey[200],
+                  border: Border.all(color: Colors.white),
+                  borderRadius: BorderRadius.circular(12)),
+              child: Padding(
+                  padding: const EdgeInsets.only(left: 20.0),
+                  child: Text('Uang Kembalian : Rp. ')),
+            ),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 25.0),
+            child: Container(
+              // padding: const EdgeInsets.only(left: 5.0),
+              child: RaisedButton(
+                color: Color(0xff5ac18e),
+                child: Text("Bayar Sekarang"),
+                textColor: Colors.white,
+                shape: StadiumBorder(),
+                onPressed: () {
+                  _controller.sendData();
+                  // _controller.namaPelangganController.text = '';
+                  // TransactionState.cleanOrder();
+                },
+              ),
             ),
           ),
           // new ListTile(
-          //   title: new Text("Uang Kembali: Rp."+ _controller.UangPelanggaController -= ),
+          //   title: new Text('Uang Kembali: Rp.'+ _controller.UangPelanggaController -= ),
           // ),
         ],
       ),

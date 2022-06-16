@@ -35,18 +35,6 @@ class _CurvedNavigationBarState extends State<CurvedNavigationBar> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 IconBottomBar(
-                    text: "Home",
-                    icon: Icons.home,
-                    selected: _selectedIndex == 0,
-                    onPressed: () {
-                      setState(() {
-                        Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => Home(),
-                        ));
-                        _selectedIndex = 0;
-                      });
-                    }),
-                IconBottomBar(
                     text: "Transaksi",
                     icon: Icons.list_alt_outlined,
                     selected: _selectedIndex == 1,

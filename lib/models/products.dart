@@ -4,8 +4,15 @@ class Product {
   String? nama;
   String? kategori;
   String? tipe;
+  String? uangPelanggan;
 
-  Product({this.id, this.harga, this.nama, this.kategori, this.tipe});
+  Product(
+      {this.id,
+      this.harga,
+      this.nama,
+      this.kategori,
+      this.tipe,
+      this.uangPelanggan});
 
   Product.fromJson(Map<String, dynamic> json, String idDocument) {
     id = idDocument;
@@ -13,6 +20,7 @@ class Product {
     nama = json['nama'];
     kategori = json['kategori'];
     tipe = json['tipe'];
+    uangPelanggan = json['uangPelanggan'];
   }
 
   Product.fromSimpleJson(Map<String, dynamic> json) {
@@ -27,6 +35,7 @@ class Product {
     data['nama'] = nama;
     data['kategori'] = kategori;
     data['tipe'] = tipe;
+    data['uangPelanggan'] = uangPelanggan;
     return data;
   }
 }

@@ -16,11 +16,11 @@ class KopiMenu extends StatelessWidget {
       ),
       drawer: NavigationDrawerWidget(),
       body: GridView.count(
-        padding: const EdgeInsets.all(25),
-        crossAxisCount: 2,
+        padding: const EdgeInsets.all(15),
+        crossAxisCount: 1,
         children: <Widget>[
           Card(
-            margin: const EdgeInsets.all(8),
+            margin: const EdgeInsets.all(35),
             child: InkWell(
               onTap: () {
                 Navigator.of(context).push(MaterialPageRoute(
@@ -44,7 +44,7 @@ class KopiMenu extends StatelessWidget {
             ),
           ),
           Card(
-            margin: const EdgeInsets.all(8),
+            margin: const EdgeInsets.all(35),
             child: InkWell(
               onTap: () {
                 Navigator.of(context).push(MaterialPageRoute(
@@ -68,7 +68,7 @@ class KopiMenu extends StatelessWidget {
             ),
           ),
           Card(
-            margin: const EdgeInsets.all(8),
+            margin: const EdgeInsets.all(35),
             child: InkWell(
               onTap: () {
                 Navigator.of(context).push(MaterialPageRoute(

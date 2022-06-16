@@ -51,7 +51,7 @@ class _SnackState extends State<Snack> {
         itemCount: (productsCount == null) ? 0 : productsCount,
         itemBuilder: (context, int position) {
           return ListTile(
-            leading: const Icon(Icons.arrow_right),
+            leading: const Icon(Icons.food_bank_outlined),
             title: Text(products![position].nama!),
             subtitle: Text(products![position].harga!.toString()),
             onTap: () {

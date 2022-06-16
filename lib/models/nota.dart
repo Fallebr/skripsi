@@ -4,15 +4,21 @@ class Nota {
   String? pelanggan;
   String? totalOrder;
   String? tanggal;
-  // String? time;
+  String? uangPelanggan;
   List<Order>? orders;
 
-  Nota({this.pelanggan, this.totalOrder, this.tanggal, this.orders});
+  Nota(
+      {this.pelanggan,
+      this.totalOrder,
+      this.tanggal,
+      this.orders,
+      this.uangPelanggan});
 
   Nota.fromJson(Map<String, dynamic> json) {
     pelanggan = json['pelanggan'];
     totalOrder = json['totalOrder'];
     tanggal = json['tanggal'];
+    uangPelanggan = json['uangPelanggan'];
     if (json['orders'] != null) {
       orders = <Order>[];
       json['orders'].forEach((v) {
@@ -30,6 +36,7 @@ class Nota {
     data['pelanggan'] = pelanggan;
     data['totalOrder'] = totalOrder;
     data['tanggal'] = tanggal;
+    data['uangPelanggan'] = uangPelanggan;
     // data['time'] = time;
     if (orders != null) {
       data['orders'] = orders!.map((v) => v.toJson()).toList();

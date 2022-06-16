@@ -13,7 +13,7 @@ class TransactonController extends GetxController {
   RxInt totalOrder = 0.obs;
 
   TextEditingController namaPelangganController = TextEditingController();
-  TextEditingController UangPelanggaController = TextEditingController();
+  TextEditingController uangPelangganController = TextEditingController();
 
   TransactonController() {
     orders.value = TransactionState.orders;
@@ -24,6 +24,7 @@ class TransactonController extends GetxController {
     nota.value.orders = orders.value;
     nota.value.tanggal = DateFormat.yMEd().add_jms().format(DateTime.now());
     nota.value.totalOrder = TransactionState.totalOrder.value.toString();
+    // nota.value.
     TransactionService.addNota(nota.value);
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:reports/kasir/transaction_state.dart';
 import 'package:reports/models/nota.dart';
 // import 'package:get/get.dart';
 // import 'package:get/get_core/src/get_main.dart';
@@ -32,10 +33,15 @@ class DetailTransaksi extends StatelessWidget {
           return ListTile(
             // leading: Text("Detail Pesanan"),
             title: Text(orders[position].product!.nama ?? ""),
-            subtitle: Text(orders[position].qty.toString()),
+            subtitle:
+                Text('Jumlah Pesanan : ' + orders[position].qty.toString()),
             // trailing: Text(order.product!.harga.toString()),
             onTap: () {},
           );
+          // Text(
+          //   ' Total Pesanan : Rp. ' +
+          //       TransactionState.uangPelanggan.value.toString(),
+          // );
         },
       ),
       bottomNavigationBar: Container(

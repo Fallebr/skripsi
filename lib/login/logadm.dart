@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:reports/commons/navigation_drawer_widget.dart';
+import 'package:reports/commons/splash_screen.dart';
 import 'package:reports/login/Logadm.dart';
 import 'package:reports/login/register.dart';
 import 'package:reports/main.dart';
@@ -147,7 +148,7 @@ class _LogAdmState extends State<LogAdm> {
                     auth.signInWithEmailAndPassword(
                         email: _email, password: _password);
                     Navigator.of(context).pushReplacement(MaterialPageRoute(
-                      builder: (context) => Home(),
+                      builder: (context) => SplashScreen(),
                     ));
                   },
                 ),
