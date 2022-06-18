@@ -53,6 +53,9 @@ class _TransaksiState extends State<Transaksi> {
             leading: const Icon(Icons.arrow_right),
             title: Text(nota![position].pelanggan!),
             subtitle: Text(nota![position].tanggal!.toString()),
+            trailing: (nota![position].status!)
+                ? Icon(Icons.star)
+                : Icon(Icons.star_border),
             onTap: () {
               Navigator.of(context).push(MaterialPageRoute(
                 builder: (context) => DetailTransaksi(

@@ -44,6 +44,20 @@ class DetailTransaksi extends StatelessWidget {
           // );
         },
       ),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+          TransactionService.updateStatusNota(nota);
+        },
+        label: Text(
+          'Selesai',
+          style: TextStyle(color: Colors.white),
+        ),
+        icon: Icon(
+          Icons.thumb_up,
+          color: Colors.white,
+        ),
+        backgroundColor: Color(0xff5ac18e),
+      ),
       bottomNavigationBar: Container(
         color: Colors.grey,
         child: Padding(

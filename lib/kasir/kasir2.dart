@@ -19,7 +19,7 @@ class Kasir2 extends StatelessWidget {
         title: Text("Halaman Kasir"),
         backgroundColor: Color(0xff5ac18e),
       ),
-      drawer: NavigationDrawerWidget(),
+      // drawer: NavigationDrawerWidget(),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
@@ -135,12 +135,12 @@ class Kasir2 extends StatelessWidget {
                   color: Colors.grey[200],
                   border: Border.all(color: Colors.white),
                   borderRadius: BorderRadius.circular(12)),
-              child: const Padding(
+              child: Padding(
                 padding: const EdgeInsets.only(left: 20.0),
                 child: TextField(
                   keyboardType: TextInputType.number,
-                  // controller: uangPelangganController,
-                  decoration: InputDecoration(
+                  controller: _controller.uangPelangganController,
+                  decoration: const InputDecoration(
                     border: InputBorder.none,
                     hintText: 'Masukan Uang Pelanggan',
                   ),
@@ -161,30 +161,95 @@ class Kasir2 extends StatelessWidget {
                   border: Border.all(color: Colors.white),
                   borderRadius: BorderRadius.circular(12)),
               child: Padding(
-                  padding: const EdgeInsets.only(left: 20.0),
-                  child: Text('Uang Kembalian : Rp. ')),
-            ),
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 25.0),
-            child: Container(
-              // padding: const EdgeInsets.only(left: 5.0),
-              child: RaisedButton(
-                color: Color(0xff5ac18e),
-                child: Text("Bayar Sekarang"),
-                textColor: Colors.white,
-                shape: StadiumBorder(),
-                onPressed: () {
-                  _controller.sendData();
-                  // _controller.namaPelangganController.text = '';
-                  // TransactionState.cleanOrder();
-                },
+                padding: const EdgeInsets.only(left: 20.0),
+                child: Obx(
+                  () => Text(
+                    'Uang Kembalian : Rp. ' +
+                        _controller.changes.value.toString(),
+                  ),
+                ),
               ),
             ),
           ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                child: Container(
+                  // padding: const EdgeInsets.only(left: 5.0),
+                  child: RaisedButton(
+                    color: Color(0xff5ac18e),
+                    child: Text("Hitung"),
+                    textColor: Colors.white,
+                    shape: StadiumBorder(),
+                    onPressed: () {
+                      _controller.calculateChange();
+                      // _controller.sendData();
+                      // _controller.namaPelangganController.text = '';
+                      // TransactionState.cleanOrder();
+                    },
+                  ),
+                ),
+              ),
+              // SizedBox(
+              //   height: 10,
+              // ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                child: Container(
+                  // padding: const EdgeInsets.only(left: 5.0),
+                  child: Obx(
+                    () => RaisedButton(
+                      color: (_controller.changes.value >= 0 &&
+                              _controller.uangPelangganController.text != '')
+                          ? Color(0xff5ac18e)
+                          : Colors.red,
+                      child: Text("Bayar Sekarang"),
+                      textColor: Colors.white,
+                      shape: StadiumBorder(),
+                      onPressed: () {
+                        (_controller.changes.value >= 0 &&
+                                _controller.uangPelangganController.text != '')
+                            ? {
+                                _controller.sendData(),
+                                showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return AlertDialog(
+                                      title: const Text('INFORMATION'),
+                                      content: SingleChildScrollView(
+                                        child: ListBody(
+                                          children: const <Widget>[
+                                            Text('Transaction Success'),
+                                          ],
+                                        ),
+                                      ),
+                                      actions: <Widget>[
+                                        TextButton(
+                                          child: const Text('oke'),
+                                          onPressed: () {
+                                            Navigator.of(context).pop();
+                                          },
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                )
+                              }
+                            : null;
+                        // _controller.namaPelangganController.text = '';
+                      },
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          )
+          // SizedBox(
+          //   height: 10,
+          // ),
+
           // new ListTile(
           //   title: new Text('Uang Kembali: Rp.'+ _controller.UangPelanggaController -= ),
           // ),

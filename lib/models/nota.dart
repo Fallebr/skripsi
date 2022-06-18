@@ -1,30 +1,34 @@
 import 'order.dart';
 
 class Nota {
+  String? id;
   String? pelanggan;
   String? totalOrder;
   String? tanggal;
-  String? uangPelanggan;
   List<Order>? orders;
+  bool? status;
 
-  Nota(
-      {this.pelanggan,
-      this.totalOrder,
-      this.tanggal,
-      this.orders,
-      this.uangPelanggan});
+  Nota({
+    this.id,
+    this.pelanggan,
+    this.totalOrder,
+    this.tanggal,
+    this.orders,
+    this.status,
+  });
 
-  Nota.fromJson(Map<String, dynamic> json) {
+  Nota.fromJson(Map<String, dynamic> json, String idNota) {
+    id = idNota;
     pelanggan = json['pelanggan'];
     totalOrder = json['totalOrder'];
     tanggal = json['tanggal'];
-    uangPelanggan = json['uangPelanggan'];
     if (json['orders'] != null) {
       orders = <Order>[];
       json['orders'].forEach((v) {
         orders!.add(Order.fromJson(v));
       });
     }
+    status = json['status'];
     // time = json['time'];
     // if (json['orders'].foreach((v) {
     //   orders!.add(Order.fromJson(v));
@@ -36,11 +40,11 @@ class Nota {
     data['pelanggan'] = pelanggan;
     data['totalOrder'] = totalOrder;
     data['tanggal'] = tanggal;
-    data['uangPelanggan'] = uangPelanggan;
     // data['time'] = time;
     if (orders != null) {
       data['orders'] = orders!.map((v) => v.toJson()).toList();
     }
+    data['status'] = status;
     return data;
   }
 }
