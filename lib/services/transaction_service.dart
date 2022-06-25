@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/cupertino.dart';
 
 import '../kasir/transaction_state.dart';
 import '../models/nota.dart';
@@ -20,6 +21,27 @@ class TransactionService {
           Nota.fromJson(jsonDecode(encodedResult), result.id),
         );
       }
+    });
+    return notaList;
+  }
+
+  Future<List<Nota>> getNotaByDate() async {
+    var dateStart = DateTime.utc(2022, 5, 5);
+    await Firebase.initializeApp();
+    final Query notaQuery = FirebaseFirestore.instance
+        .collection('transactions')
+        .where('tanggal', isGreaterThanOrEqualTo: dateStart);
+    List<Nota> notaList = [];
+    await notaQuery.get().then((querySnapshot) {
+      debugPrint('nota by date');
+      for (var result in querySnapshot.docs) {
+        // var encodedResult = jsonEncode(result.data());
+        // print(encodedResult);
+        // notaList.add(
+        //   Nota.fromJson(jsonDecode(result.data()), result.id),
+        // );
+      }
+      debugPrint('nota by date');
     });
     return notaList;
   }

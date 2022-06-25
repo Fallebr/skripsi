@@ -23,6 +23,7 @@ class TransactonController extends GetxController {
   void sendData() {
     nota.value.pelanggan = namaPelangganController.text;
     nota.value.orders = orders.value;
+    // nota.value.tanggal = DateFormat.yMEd().add_jms().format(DateTime.now());
     nota.value.tanggal = DateFormat.yMEd().add_jms().format(DateTime.now());
     nota.value.totalOrder = TransactionState.totalOrder.value.toString();
     nota.value.status = false;

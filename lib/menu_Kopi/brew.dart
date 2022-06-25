@@ -53,7 +53,8 @@ class _BrewState extends State<Brew> {
           return ListTile(
             leading: const Icon(Icons.coffee_maker),
             title: Text(products![position].nama!),
-            subtitle: Text(products![position].harga!.toString()),
+            subtitle: Text(products![position].harga!),
+            trailing: Text(products![position].stok!),
             onTap: () {
               showDialog(
                 context: context,

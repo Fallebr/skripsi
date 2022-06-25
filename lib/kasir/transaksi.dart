@@ -17,6 +17,7 @@ class Transaksi extends StatefulWidget {
 class _TransaksiState extends State<Transaksi> {
   int? notaCount;
   List<Nota>? nota;
+  List<Nota>? nota2;
   TransactionService? service;
 
   @override
@@ -29,6 +30,7 @@ class _TransaksiState extends State<Transaksi> {
   Future initialize() async {
     nota = [];
     nota = await service?.getNota();
+    nota2 = await service?.getNotaByDate();
     notaCount = nota?.length;
     nota = nota;
     refresh();

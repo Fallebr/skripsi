@@ -53,7 +53,8 @@ class _SnackState extends State<Snack> {
           return ListTile(
             leading: const Icon(Icons.food_bank_outlined),
             title: Text(products![position].nama!),
-            subtitle: Text(products![position].harga!.toString()),
+            subtitle: Text(products![position].harga!),
+            trailing: Text(products![position].stok!),
             onTap: () {
               showDialog(
                 context: context,

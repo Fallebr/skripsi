@@ -13,7 +13,7 @@ class App extends StatelessWidget {
       title: 'Pos App',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(accentColor: Colors.orange, primarySwatch: Colors.blue),
-      home: Kasir2(),
+      home: Transaksi(),
     );
   }
 }

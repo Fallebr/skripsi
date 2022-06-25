@@ -21,7 +21,7 @@ class Nota {
     id = idNota;
     pelanggan = json['pelanggan'];
     totalOrder = json['totalOrder'];
-    tanggal = json['tanggal'];
+    tanggal = json['tanggal'].toString();
     if (json['orders'] != null) {
       orders = <Order>[];
       json['orders'].forEach((v) {

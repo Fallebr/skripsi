@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:reports/kasir/transaction_state.dart';
+import 'package:reports/kasir/transaksi.dart';
 import 'package:reports/models/nota.dart';
 // import 'package:get/get.dart';
 // import 'package:get/get_core/src/get_main.dart';
@@ -47,6 +48,9 @@ class DetailTransaksi extends StatelessWidget {
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
           TransactionService.updateStatusNota(nota);
+          Navigator.of(context).pushReplacement(MaterialPageRoute(
+            builder: (context) => Transaksi(),
+          ));
         },
         label: Text(
           'Selesai',
@@ -58,6 +62,7 @@ class DetailTransaksi extends StatelessWidget {
         ),
         backgroundColor: Color(0xff5ac18e),
       ),
+
       bottomNavigationBar: Container(
         color: Colors.grey,
         child: Padding(
