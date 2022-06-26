@@ -52,12 +52,21 @@ class _TransaksiState extends State<Transaksi> {
         itemCount: (notaCount == null) ? 0 : notaCount,
         itemBuilder: (context, int position) {
           return ListTile(
-            leading: const Icon(Icons.arrow_right),
-            title: Text(nota![position].pelanggan!),
-            subtitle: Text(nota![position].tanggal!.toString()),
+            leading: const Icon(Icons.arrow_right, size: 20),
+            title: Text(
+              nota![position].pelanggan!,
+              style: TextStyle(fontSize: 20),
+            ),
+            subtitle: Text(
+              nota![position].tanggal!.toString() +
+                  '         ' +
+                  ' Total : Rp. ' +
+                  nota![position].totalOrder.toString(),
+              style: TextStyle(fontSize: 20),
+            ),
             trailing: (nota![position].status!)
-                ? Icon(Icons.star)
-                : Icon(Icons.star_border),
+                ? Icon(Icons.check_circle_outline)
+                : Icon(Icons.circle_outlined),
             onTap: () {
               Navigator.of(context).push(MaterialPageRoute(
                 builder: (context) => DetailTransaksi(
@@ -66,9 +75,13 @@ class _TransaksiState extends State<Transaksi> {
                 ),
               ));
             },
+            // SizedBox(
+            //     height: 50,
+            //   ),
           );
         },
       ),
+      backgroundColor: Colors.grey[200],
       bottomNavigationBar: CurvedNavigationBar(),
     );
   }

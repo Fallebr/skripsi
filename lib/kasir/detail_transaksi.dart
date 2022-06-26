@@ -12,6 +12,7 @@ import '../commons/navigation_drawer_widget.dart';
 import 'transaction_controller.dart';
 
 class DetailTransaksi extends StatelessWidget {
+  int? notaCount;
   final List<Order> orders;
   final service = TransactionService();
   final Nota nota;
@@ -33,9 +34,14 @@ class DetailTransaksi extends StatelessWidget {
           // for (var order in _controller.orders.value)
           return ListTile(
             // leading: Text("Detail Pesanan"),
-            title: Text(orders[position].product!.nama ?? ""),
-            subtitle:
-                Text('Jumlah Pesanan : ' + orders[position].qty.toString()),
+            title: Text(orders[position].product!.nama ?? "",
+                style: TextStyle(
+                  fontSize: 25,
+                )),
+            trailing: Text(orders[position].qty.toString(),
+                style: TextStyle(
+                  fontSize: 25,
+                )),
             // trailing: Text(order.product!.harga.toString()),
             onTap: () {},
           );
@@ -45,6 +51,7 @@ class DetailTransaksi extends StatelessWidget {
           // );
         },
       ),
+
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
           TransactionService.updateStatusNota(nota);
@@ -57,7 +64,7 @@ class DetailTransaksi extends StatelessWidget {
           style: TextStyle(color: Colors.white),
         ),
         icon: Icon(
-          Icons.thumb_up,
+          Icons.check_rounded,
           color: Colors.white,
         ),
         backgroundColor: Color(0xff5ac18e),
@@ -70,6 +77,10 @@ class DetailTransaksi extends StatelessWidget {
           child: Text(
             'Total Order : Rp. ' + nota.totalOrder.toString(),
             textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            ),
           ),
           // SizedBox(height: 10),
         ),

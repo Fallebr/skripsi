@@ -14,7 +14,7 @@ class KopiMenu extends StatelessWidget {
         title: Text("MENU"),
         backgroundColor: Color(0xff5ac18e),
       ),
-      drawer: NavigationDrawerWidget(),
+      // drawer: NavigationDrawerWidget(),
       body: GridView.count(
         padding: const EdgeInsets.all(15),
         crossAxisCount: 1,

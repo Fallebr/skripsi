@@ -16,10 +16,10 @@ class Kasir2 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Halaman Kasir"),
+        title: Text("Income Today : Rp. (Income)"),
         backgroundColor: Color(0xff5ac18e),
       ),
-      // drawer: NavigationDrawerWidget(),
+      drawer: NavigationDrawerWidget(),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
@@ -50,7 +50,10 @@ class Kasir2 extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 25.0),
             child: RaisedButton(
               color: Color(0xff5ac18e),
-              child: Text("tambahkan pesanan"),
+              child: Text(
+                "tambahkan pesanan",
+                style: TextStyle(fontSize: 20),
+              ),
               textColor: Colors.white,
               shape: StadiumBorder(),
               onPressed: () {
@@ -64,9 +67,10 @@ class Kasir2 extends StatelessWidget {
             ),
           ),
           Container(
+            padding: const EdgeInsets.symmetric(horizontal: 25.0),
             child: (_controller.orders.isNotEmpty)
                 ? Container(
-                    height: 200,
+                    height: 300,
                     child: Obx(
                       () => ListView(
                         children: [
@@ -74,9 +78,18 @@ class Kasir2 extends StatelessWidget {
                             // total_pesanan +=
                             //     order.product!.harga * int.parse(order.qty),
                             ListTile(
-                              title: Text(order.product!.nama!),
-                              subtitle: Text(order.product!.harga.toString()),
-                              trailing: Text(order.qty.toString()),
+                              title: Text(
+                                order.product!.nama!,
+                                style: TextStyle(fontSize: 20),
+                              ),
+                              subtitle: Text(
+                                order.product!.harga.toString(),
+                                style: TextStyle(fontSize: 20),
+                              ),
+                              trailing: Text(
+                                order.qty.toString(),
+                                style: TextStyle(fontSize: 20),
+                              ),
                               onTap: () {
                                 TransactionState.removeOrder(order);
                               },
@@ -94,6 +107,7 @@ class Kasir2 extends StatelessWidget {
                 () => (Text(
                   ' Total Pesanan : Rp. ' +
                       TransactionState.totalOrder.value.toString(),
+                  style: TextStyle(fontSize: 20),
                 )),
               ),
             ),
@@ -166,6 +180,7 @@ class Kasir2 extends StatelessWidget {
                   () => Text(
                     'Uang Kembalian : Rp. ' +
                         _controller.changes.value.toString(),
+                    style: TextStyle(fontSize: 20),
                   ),
                 ),
               ),
@@ -180,7 +195,10 @@ class Kasir2 extends StatelessWidget {
                   // padding: const EdgeInsets.only(left: 5.0),
                   child: RaisedButton(
                     color: Color(0xff5ac18e),
-                    child: Text("Hitung"),
+                    child: Text(
+                      "Hitung",
+                      style: TextStyle(fontSize: 20),
+                    ),
                     textColor: Colors.white,
                     shape: StadiumBorder(),
                     onPressed: () {
@@ -205,7 +223,10 @@ class Kasir2 extends StatelessWidget {
                               _controller.uangPelangganController.text != '')
                           ? Color(0xff5ac18e)
                           : Colors.red,
-                      child: Text("Bayar Sekarang"),
+                      child: Text(
+                        "Bayar Sekarang",
+                        style: TextStyle(fontSize: 20),
+                      ),
                       textColor: Colors.white,
                       shape: StadiumBorder(),
                       onPressed: () {

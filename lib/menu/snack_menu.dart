@@ -46,15 +46,33 @@ class _SnackState extends State<Snack> {
         title: Text("MENU"),
         backgroundColor: Color(0xff5ac18e),
       ),
-      drawer: NavigationDrawerWidget(),
+      // drawer: NavigationDrawerWidget(),
       body: ListView.builder(
         itemCount: (productsCount == null) ? 0 : productsCount,
         itemBuilder: (context, int position) {
           return ListTile(
-            leading: const Icon(Icons.food_bank_outlined),
-            title: Text(products![position].nama!),
-            subtitle: Text(products![position].harga!),
-            trailing: Text(products![position].stok!),
+            leading: const Icon(
+              Icons.food_bank_outlined,
+              size: 40,
+            ),
+            title: Text(
+              products![position].nama!,
+              style: TextStyle(
+                fontSize: 25,
+              ),
+            ),
+            subtitle: Text(
+              products![position].harga!,
+              style: TextStyle(
+                fontSize: 25,
+              ),
+            ),
+            trailing: Text(
+              products![position].stok!,
+              style: TextStyle(
+                fontSize: 25,
+              ),
+            ),
             onTap: () {
               showDialog(
                 context: context,
@@ -84,7 +102,10 @@ class SetQty extends StatelessWidget {
   Widget build(BuildContext context) {
     TextEditingController jumlahController = TextEditingController();
     Widget okButton = TextButton(
-      child: const Text("OK"),
+      child: const Text(
+        "OK",
+        style: TextStyle(color: Colors.white),
+      ),
       onPressed: () {
         Order order = Order(
           product: product,
