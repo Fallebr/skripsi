@@ -14,12 +14,13 @@ class TransactionService {
         FirebaseFirestore.instance.collection('transactions');
     List<Nota> notaList = [];
     await notaQuery.get().then((querySnapshot) {
+      TransactionState.totalOrder.value = 0;
       for (var result in querySnapshot.docs) {
         var encodedResult = jsonEncode(result.data());
         print(encodedResult);
-        notaList.add(
-          Nota.fromJson(jsonDecode(encodedResult), result.id),
-        );
+        Nota nota = Nota.fromJson(jsonDecode(encodedResult), result.id);
+        notaList.add(nota);
+        TransactionState.totalPerDay(int.parse(nota.totalOrder!));
       }
     });
     return notaList;

@@ -12,6 +12,9 @@ class TransactionState extends GetxController {
   static void addOrder(Order order) {
     orders.add(order);
     addTotal(order);
+    // int harga = int.parse(order.product!.harga!);
+    // int qty = int.parse(order.qty!);
+    // totalPerDay(qty * harga);
   }
 
   static void removeOrder(Order order) {
@@ -33,5 +36,9 @@ class TransactionState extends GetxController {
   static void decreaseTotal(Order order) {
     totalOrder.value -=
         (int.parse(order.product!.harga!) * int.parse(order.qty!));
+  }
+
+  static void totalPerDay(int order) {
+    totalOrder.value++;
   }
 }

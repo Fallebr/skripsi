@@ -39,12 +39,14 @@ class _CurvedNavigationBarState extends State<CurvedNavigationBar> {
                     icon: Icons.list_alt_outlined,
                     selected: _selectedIndex == 1,
                     onPressed: () {
-                      setState(() {
-                        Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => Transaksi(),
-                        ));
-                        _selectedIndex = 1;
-                      });
+                      setState(
+                        () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => Transaksi(),
+                          ));
+                          _selectedIndex = 1;
+                        },
+                      );
                     }),
                 IconBottomBar(
                     text: "kasir",

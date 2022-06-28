@@ -1,9 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:reports/commons/curved_navbar.dart';
 import 'package:reports/commons/navigation_drawer_widget.dart';
 import 'package:reports/kasir/detail_transaksi.dart';
+import 'package:reports/kasir/transaction_controller.dart';
+import 'package:reports/kasir/transaction_state.dart';
 import 'package:reports/models/nota.dart';
 import 'package:reports/services/transaction_service.dart';
 
@@ -15,6 +18,7 @@ class Transaksi extends StatefulWidget {
 }
 
 class _TransaksiState extends State<Transaksi> {
+  final _controller = Get.put(TransactonController());
   int? notaCount;
   List<Nota>? nota;
   List<Nota>? nota2;
@@ -44,7 +48,10 @@ class _TransaksiState extends State<Transaksi> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Halaman Transaksi"),
+        title: Obx(
+          () => Text("Income Today: Rp. " +
+              TransactionState.totalOrder.value.toString()),
+        ),
         backgroundColor: Color(0xff5ac18e),
       ),
       drawer: NavigationDrawerWidget(),
@@ -52,7 +59,7 @@ class _TransaksiState extends State<Transaksi> {
         itemCount: (notaCount == null) ? 0 : notaCount,
         itemBuilder: (context, int position) {
           return ListTile(
-            leading: const Icon(Icons.arrow_right, size: 20),
+            leading: Icon(Icons.arrow_right, size: 40),
             title: Text(
               nota![position].pelanggan!,
               style: TextStyle(fontSize: 20),
@@ -60,7 +67,7 @@ class _TransaksiState extends State<Transaksi> {
             subtitle: Text(
               nota![position].tanggal!.toString() +
                   '         ' +
-                  ' Total : Rp. ' +
+                  'Total : Rp. ' +
                   nota![position].totalOrder.toString(),
               style: TextStyle(fontSize: 20),
             ),
@@ -82,6 +89,15 @@ class _TransaksiState extends State<Transaksi> {
         },
       ),
       backgroundColor: Colors.grey[200],
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {},
+        label: Icon(
+          Icons.restore,
+          color: Colors.white,
+          size: 40,
+        ),
+        backgroundColor: Color(0xff5ac18e),
+      ),
       bottomNavigationBar: CurvedNavigationBar(),
     );
   }

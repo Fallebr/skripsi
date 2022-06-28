@@ -16,7 +16,7 @@ class Kasir2 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Income Today : Rp. (Income)"),
+        title: Text("Welcome Again!"),
         backgroundColor: Color(0xff5ac18e),
       ),
       drawer: NavigationDrawerWidget(),
@@ -75,6 +75,7 @@ class Kasir2 extends StatelessWidget {
                       () => ListView(
                         children: [
                           for (var order in _controller.orders.value)
+                            // TransactionState.totalPerDay(order.)
                             // total_pesanan +=
                             //     order.product!.harga * int.parse(order.qty),
                             ListTile(

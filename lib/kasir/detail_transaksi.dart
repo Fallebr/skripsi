@@ -27,29 +27,66 @@ class DetailTransaksi extends StatelessWidget {
         title: Text("Detail Transaksi"),
         backgroundColor: Color(0xff5ac18e),
       ),
-      drawer: NavigationDrawerWidget(),
-      body: ListView.builder(
-        itemCount: (orders == null) ? 0 : orders.length,
-        itemBuilder: (context, int position) {
-          // for (var order in _controller.orders.value)
-          return ListTile(
-            // leading: Text("Detail Pesanan"),
-            title: Text(orders[position].product!.nama ?? "",
-                style: TextStyle(
-                  fontSize: 25,
-                )),
-            trailing: Text(orders[position].qty.toString(),
-                style: TextStyle(
-                  fontSize: 25,
-                )),
-            // trailing: Text(order.product!.harga.toString()),
-            onTap: () {},
-          );
-          // Text(
-          //   ' Total Pesanan : Rp. ' +
-          //       TransactionState.uangPelanggan.value.toString(),
-          // );
-        },
+      // drawer: NavigationDrawerWidget(),
+      body: Column(
+        children: [
+          Container(
+            margin: EdgeInsets.only(top: 50),
+            height: 200,
+            width: 200,
+            child: Image.asset(
+              'assets/KLlogo.png',
+            ),
+          ),
+          SizedBox(
+            height: 50,
+          ),
+          Container(
+            width: double.infinity,
+            padding: EdgeInsets.only(
+              left: 15,
+            ),
+            child: Text(
+              'Nama Pelanggan: ' + nota.pelanggan!,
+              style: TextStyle(
+                fontSize: 30,
+              ),
+              textAlign: TextAlign.left,
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.only(top: 30),
+            height: 300,
+            child: ListView.builder(
+              itemCount: (orders == null) ? 0 : orders.length,
+              itemBuilder: (context, int position) {
+                // for (var order in _controller.orders.value)
+                return ListTile(
+                  // leading: Image.asset('assets/KLlogo.png'),
+                  title: Text(orders[position].product!.nama ?? "",
+                      style: TextStyle(
+                        fontSize: 25,
+                      )),
+                  // subtitle: Text(
+                  //   orders[position].product!.harga.toString(),
+                  //   style: TextStyle(fontSize: 25),
+                  // ),
+                  trailing: Text(orders[position].qty.toString(),
+                      style: TextStyle(
+                        fontSize: 25,
+                      )),
+                  // trailing: Text(order.product!.harga.toString()),
+                  onTap: () {},
+                );
+
+                // Text(
+                //   ' Total Pesanan : Rp. ' +
+                //       TransactionState.uangPelanggan.value.toString(),
+                // );
+              },
+            ),
+          ),
+        ],
       ),
 
       floatingActionButton: FloatingActionButton.extended(
@@ -61,7 +98,6 @@ class DetailTransaksi extends StatelessWidget {
         },
         label: Text(
           'Selesai',
-          style: TextStyle(color: Colors.white),
         ),
         icon: Icon(
           Icons.check_rounded,

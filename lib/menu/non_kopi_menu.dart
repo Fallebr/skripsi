@@ -43,7 +43,7 @@ class _NonKopiState extends State<NonKopi> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("MENU"),
+        title: Text("MENU"),
         backgroundColor: const Color(0xff5ac18e),
       ),
       // drawer: NavigationDrawerWidget(),
