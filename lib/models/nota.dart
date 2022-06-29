@@ -5,6 +5,7 @@ class Nota {
   String? pelanggan;
   String? totalOrder;
   String? tanggal;
+  String? kasir;
   List<Order>? orders;
   bool? status;
 
@@ -13,6 +14,7 @@ class Nota {
     this.pelanggan,
     this.totalOrder,
     this.tanggal,
+    this.kasir,
     this.orders,
     this.status,
   });
@@ -22,6 +24,7 @@ class Nota {
     pelanggan = json['pelanggan'];
     totalOrder = json['totalOrder'];
     tanggal = json['tanggal'].toString();
+    kasir = json['kasir'].toString();
     if (json['orders'] != null) {
       orders = <Order>[];
       json['orders'].forEach((v) {
@@ -40,6 +43,7 @@ class Nota {
     data['pelanggan'] = pelanggan;
     data['totalOrder'] = totalOrder;
     data['tanggal'] = tanggal;
+    data['kasir'] = kasir;
     // data['time'] = time;
     if (orders != null) {
       data['orders'] = orders!.map((v) => v.toJson()).toList();

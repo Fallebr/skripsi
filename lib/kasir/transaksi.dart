@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -30,16 +31,30 @@ class _TransaksiState extends State<Transaksi> {
   String? startDate;
   String? endDate;
 
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  late User _user;
+  String? email;
+
   @override
   void initState() {
     service = TransactionService();
-    initialize();
+    getCurrentUser();
+    // initialize();
     super.initState();
+  }
+
+  getCurrentUser() async {
+    _user = _auth.currentUser!;
+    _controller.emailController.text = _user.email!;
+    setState(() {
+      email = _user.email!;
+    });
+    initialize();
   }
 
   Future initialize() async {
     nota = [];
-    nota = await service?.getNota();
+    nota = await service?.getNota(email);
     notaCount = nota?.length;
     nota = nota;
     refresh();
@@ -47,7 +62,7 @@ class _TransaksiState extends State<Transaksi> {
 
   Future getNotaFilter(startDate, endDate) async {
     nota = [];
-    nota = await service?.getNotaByDate(startDate, endDate);
+    nota = await service?.getNotaByDate(startDate, endDate, email);
     notaCount = nota?.length;
     nota = nota;
     refresh();

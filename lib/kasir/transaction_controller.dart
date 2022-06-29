@@ -15,6 +15,7 @@ class TransactonController extends GetxController {
 
   TextEditingController namaPelangganController = TextEditingController();
   TextEditingController uangPelangganController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
 
   TransactonController() {
     orders.value = TransactionState.orders;
@@ -26,6 +27,7 @@ class TransactonController extends GetxController {
     nota.value.tanggal = DateFormat("dd/MM/yyyy").format(DateTime.now());
     nota.value.totalOrder = TransactionState.totalOrder.value.toString();
     nota.value.status = false;
+    nota.value.kasir = emailController.text;
     // nota.value.
     TransactionService.addNota(nota.value);
     namaPelangganController.text = '';

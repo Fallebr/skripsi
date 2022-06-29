@@ -8,10 +8,11 @@ import '../kasir/transaction_state.dart';
 import '../models/nota.dart';
 
 class TransactionService {
-  Future<List<Nota>> getNota() async {
+  Future<List<Nota>> getNota(email) async {
     await Firebase.initializeApp();
-    final Query notaQuery =
-        FirebaseFirestore.instance.collection('transactions');
+    final Query notaQuery = FirebaseFirestore.instance
+        .collection('transactions')
+        .where('kasir', isEqualTo: email);
     List<Nota> notaList = [];
     await notaQuery.get().then((querySnapshot) {
       TransactionState.totalOrder.value = 0;
@@ -26,12 +27,13 @@ class TransactionService {
     return notaList;
   }
 
-  Future<List<Nota>> getNotaByDate(startDate, endDate) async {
+  Future<List<Nota>> getNotaByDate(startDate, endDate, email) async {
     await Firebase.initializeApp();
     final Query notaQuery = FirebaseFirestore.instance
         .collection('transactions')
         .where('tanggal', isGreaterThanOrEqualTo: startDate)
-        .where('tanggal', isLessThanOrEqualTo: endDate);
+        .where('tanggal', isLessThanOrEqualTo: endDate)
+        .where('kasir', isEqualTo: email);
     List<Nota> notaList = [];
     await notaQuery.get().then((querySnapshot) {
       TransactionState.totalOrder.value = 0;

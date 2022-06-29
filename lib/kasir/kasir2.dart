@@ -27,6 +27,7 @@ class _Kasir2State extends State<Kasir2> {
   late User _user;
   getCurrentUser() async {
     _user = _auth.currentUser!;
+    _controller.emailController.text = _user.email!;
   }
 
   @override
@@ -130,7 +131,7 @@ class _Kasir2State extends State<Kasir2> {
             child: Container(
               child: Obx(
                 () => (Text(
-                  ' Total Pesanan : Rp. ' +
+                  ' Total Pesanan : ' +
                       TransactionState.totalOrder.value.toString(),
                   style: TextStyle(fontSize: 20),
                 )),
