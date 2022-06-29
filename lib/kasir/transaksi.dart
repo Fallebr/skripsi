@@ -23,6 +23,12 @@ class _TransaksiState extends State<Transaksi> {
   List<Nota>? nota;
   List<Nota>? nota2;
   TransactionService? service;
+  int? income;
+
+  DateTime selectedStartDate = DateTime.now();
+  DateTime selectedEndDate = DateTime.now();
+  String? startDate;
+  String? endDate;
 
   @override
   void initState() {
@@ -34,24 +40,71 @@ class _TransaksiState extends State<Transaksi> {
   Future initialize() async {
     nota = [];
     nota = await service?.getNota();
-    nota2 = await service?.getNotaByDate();
+    notaCount = nota?.length;
+    nota = nota;
+    refresh();
+  }
+
+  Future getNotaFilter(startDate, endDate) async {
+    nota = [];
+    nota = await service?.getNotaByDate(startDate, endDate);
     notaCount = nota?.length;
     nota = nota;
     refresh();
   }
 
   void refresh() {
+    getTotalIncome();
     setState(() {});
+  }
+
+  void getTotalIncome() {
+    var total = 0;
+    for (var i = 0; i < notaCount!; i++) {
+      var totalOrder = nota![i].totalOrder;
+      total += int.parse(totalOrder!);
+      print(total);
+    }
+    setState(() {
+      income = total;
+    });
+  }
+
+  Future<Null> _selectStartDate(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+        context: context,
+        initialDate: selectedStartDate,
+        firstDate: DateTime(2015, 8),
+        lastDate: DateTime(2101));
+    Navigator.pop(context);
+    if (picked != null && picked != selectedStartDate)
+      setState(() {
+        selectedStartDate = picked;
+        startDate = DateFormat('dd/MM/yyyy').format(selectedStartDate);
+        _modalBottomSheetMenu();
+      });
+  }
+
+  Future<Null> _selectEndDate(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+        context: context,
+        initialDate: selectedEndDate,
+        firstDate: DateTime(2015, 8),
+        lastDate: DateTime(2101));
+    Navigator.pop(context);
+    if (picked != null && picked != selectedEndDate)
+      setState(() {
+        selectedEndDate = picked;
+        endDate = DateFormat('dd/MM/yyyy').format(selectedEndDate);
+        _modalBottomSheetMenu();
+      });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Obx(
-          () => Text("Income Today: Rp. " +
-              TransactionState.totalOrder.value.toString()),
-        ),
+        title: Text("Income : Rp. ${income}"),
         backgroundColor: Color(0xff5ac18e),
       ),
       drawer: NavigationDrawerWidget(),
@@ -89,16 +142,121 @@ class _TransaksiState extends State<Transaksi> {
         },
       ),
       backgroundColor: Colors.grey[200],
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {},
-        label: Icon(
-          Icons.restore,
-          color: Colors.white,
-          size: 40,
-        ),
-        backgroundColor: Color(0xff5ac18e),
+      floatingActionButton: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: FloatingActionButton.extended(
+              onPressed: () {
+                _modalBottomSheetMenu();
+              },
+              label: Icon(
+                Icons.filter_alt,
+                color: Colors.white,
+                size: 40,
+              ),
+              backgroundColor: Color(0xff5ac18e),
+            ),
+          ),
+          FloatingActionButton.extended(
+            onPressed: () {
+              setState(() {
+                notaCount = 0;
+                income = 0;
+                nota = [];
+              });
+            },
+            label: Icon(
+              Icons.restore,
+              color: Colors.white,
+              size: 40,
+            ),
+            backgroundColor: Color(0xff5ac18e),
+          ),
+        ],
       ),
       bottomNavigationBar: CurvedNavigationBar(),
+    );
+  }
+
+  void _modalBottomSheetMenu() {
+    showModalBottomSheet(
+      context: context,
+      builder: (context) => Container(
+        height: MediaQuery.of(context).size.height * 0.3,
+        decoration: new BoxDecoration(
+          color: Colors.white,
+          borderRadius: new BorderRadius.only(
+            topLeft: const Radius.circular(25.0),
+            topRight: const Radius.circular(25.0),
+          ),
+        ),
+        child: Center(
+            child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Text(
+              'Filter Transaksi:',
+              style: TextStyle(fontSize: 20),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                InkWell(
+                    onTap: () => _selectStartDate(context),
+                    child: Container(
+                        padding: const EdgeInsets.all(15),
+                        decoration: BoxDecoration(
+                            color: Color(0xff5ac18e),
+                            borderRadius: BorderRadius.circular(10)),
+                        child: Text('Start Date ',
+                            style: TextStyle(color: Colors.white)))),
+                Text(' = ${startDate}', style: TextStyle(fontSize: 20)),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                InkWell(
+                    onTap: () => _selectEndDate(context),
+                    child: Container(
+                        padding: const EdgeInsets.all(15),
+                        decoration: BoxDecoration(
+                            color: Color(0xff5ac18e),
+                            borderRadius: BorderRadius.circular(10)),
+                        child: Text('End Date ',
+                            style: TextStyle(color: Colors.white)))),
+                Text(' = ${endDate}', style: TextStyle(fontSize: 20)),
+              ],
+            ),
+            InkWell(
+              onTap: () {
+                getNotaFilter(startDate, endDate);
+                Navigator.pop(context);
+              },
+              child: Container(
+                padding: const EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  color: Color(0xff5ac18e),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Column(
+                  children: [
+                    Icon(
+                      Icons.filter_alt,
+                      color: Colors.white,
+                      size: 40,
+                    ),
+                    Text('Filter', style: TextStyle(color: Colors.white)),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        )),
+      ),
     );
   }
 }

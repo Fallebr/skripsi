@@ -1,22 +1,46 @@
 import 'dart:ffi';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:reports/commons/curved_navbar.dart';
 import 'package:reports/commons/navigation_drawer_widget.dart';
 import 'package:reports/kasir/transaction_controller.dart';
 import 'package:reports/kasir/transaction_state.dart';
 import 'package:reports/pages/menu.dart';
 
-class Kasir2 extends StatelessWidget {
+class Kasir2 extends StatefulWidget {
+  @override
+  State<Kasir2> createState() => _Kasir2State();
+}
+
+GoogleSignIn _googleSignIn = GoogleSignIn(scopes: ['email']);
+
+class _Kasir2State extends State<Kasir2> {
   final _controller = Get.put(TransactonController());
+
   int total_pesanan = 0;
+  GoogleSignInAccount? user = _googleSignIn.currentUser;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  late User _user;
+  getCurrentUser() async {
+    _user = _auth.currentUser!;
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    getCurrentUser();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Welcome Again!"),
+        title: Text("Welcome Again! ${_user.email}"),
         backgroundColor: Color(0xff5ac18e),
       ),
       drawer: NavigationDrawerWidget(),

@@ -26,23 +26,22 @@ class TransactionService {
     return notaList;
   }
 
-  Future<List<Nota>> getNotaByDate() async {
-    var dateStart = DateTime.utc(2022, 5, 5);
+  Future<List<Nota>> getNotaByDate(startDate, endDate) async {
     await Firebase.initializeApp();
     final Query notaQuery = FirebaseFirestore.instance
         .collection('transactions')
-        .where('tanggal', isGreaterThanOrEqualTo: dateStart);
+        .where('tanggal', isGreaterThanOrEqualTo: startDate)
+        .where('tanggal', isLessThanOrEqualTo: endDate);
     List<Nota> notaList = [];
     await notaQuery.get().then((querySnapshot) {
-      debugPrint('nota by date');
+      TransactionState.totalOrder.value = 0;
       for (var result in querySnapshot.docs) {
-        // var encodedResult = jsonEncode(result.data());
-        // print(encodedResult);
-        // notaList.add(
-        //   Nota.fromJson(jsonDecode(result.data()), result.id),
-        // );
+        var encodedResult = jsonEncode(result.data());
+        print(encodedResult);
+        Nota nota = Nota.fromJson(jsonDecode(encodedResult), result.id);
+        notaList.add(nota);
+        TransactionState.totalPerDay(int.parse(nota.totalOrder!));
       }
-      debugPrint('nota by date');
     });
     return notaList;
   }

@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:reports/kasir/transaction_state.dart';
@@ -11,15 +12,36 @@ import 'package:reports/services/transaction_service.dart';
 import '../commons/navigation_drawer_widget.dart';
 import 'transaction_controller.dart';
 
-class DetailTransaksi extends StatelessWidget {
-  int? notaCount;
+class DetailTransaksi extends StatefulWidget {
   final List<Order> orders;
-  final service = TransactionService();
   final Nota nota;
-  // final _controller = Get.put(TransactonController());
-
   DetailTransaksi({Key? key, required this.orders, required this.nota})
       : super(key: key);
+
+  @override
+  State<DetailTransaksi> createState() => _DetailTransaksiState();
+}
+
+class _DetailTransaksiState extends State<DetailTransaksi> {
+  int? notaCount;
+
+  final service = TransactionService();
+
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+
+  late User _user;
+
+  getCurrentUser() async {
+    _user = _auth.currentUser!;
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    getCurrentUser();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,24 +68,35 @@ class DetailTransaksi extends StatelessWidget {
             padding: EdgeInsets.only(
               left: 15,
             ),
-            child: Text(
-              'Nama Pelanggan: ' + nota.pelanggan!,
-              style: TextStyle(
-                fontSize: 30,
-              ),
-              textAlign: TextAlign.left,
+            child: Column(
+              children: [
+                Text(
+                  'Kasir: ${_user.email}',
+                  style: TextStyle(
+                    fontSize: 20,
+                  ),
+                  textAlign: TextAlign.left,
+                ),
+                Text(
+                  'Nama Pelanggan: ' + widget.nota.pelanggan!,
+                  style: TextStyle(
+                    fontSize: 20,
+                  ),
+                  textAlign: TextAlign.left,
+                ),
+              ],
             ),
           ),
           Container(
             margin: EdgeInsets.only(top: 30),
             height: 300,
             child: ListView.builder(
-              itemCount: (orders == null) ? 0 : orders.length,
+              itemCount: (widget.orders == null) ? 0 : widget.orders.length,
               itemBuilder: (context, int position) {
                 // for (var order in _controller.orders.value)
                 return ListTile(
                   // leading: Image.asset('assets/KLlogo.png'),
-                  title: Text(orders[position].product!.nama ?? "",
+                  title: Text(widget.orders[position].product!.nama ?? "",
                       style: TextStyle(
                         fontSize: 25,
                       )),
@@ -71,7 +104,7 @@ class DetailTransaksi extends StatelessWidget {
                   //   orders[position].product!.harga.toString(),
                   //   style: TextStyle(fontSize: 25),
                   // ),
-                  trailing: Text(orders[position].qty.toString(),
+                  trailing: Text(widget.orders[position].qty.toString(),
                       style: TextStyle(
                         fontSize: 25,
                       )),
@@ -91,7 +124,7 @@ class DetailTransaksi extends StatelessWidget {
 
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
-          TransactionService.updateStatusNota(nota);
+          TransactionService.updateStatusNota(widget.nota);
           Navigator.of(context).pushReplacement(MaterialPageRoute(
             builder: (context) => Transaksi(),
           ));
@@ -111,7 +144,7 @@ class DetailTransaksi extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Text(
-            'Total Order : Rp. ' + nota.totalOrder.toString(),
+            'Total Order : Rp. ' + widget.nota.totalOrder.toString(),
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 20,
