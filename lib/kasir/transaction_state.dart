@@ -7,6 +7,7 @@ import 'package:reports/models/order.dart';
 class TransactionState extends GetxController {
   static RxList<Order> orders = <Order>[].obs;
   static RxInt totalOrder = 0.obs;
+  static RxInt totalOrderPerDay = 0.obs;
   static RxInt uangKembali = 0.obs;
 
   static void addOrder(Order order) {
@@ -39,6 +40,6 @@ class TransactionState extends GetxController {
   }
 
   static void totalPerDay(int order) {
-    totalOrder.value++;
+    totalOrderPerDay.value += order;
   }
 }
