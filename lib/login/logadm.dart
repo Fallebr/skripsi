@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get_navigation/get_navigation.dart';
+import 'package:reports/commons/mainpage.dart';
 import 'package:reports/commons/navigation_drawer_widget.dart';
 import 'package:reports/commons/splash_screen.dart';
 import 'package:reports/login/Logadm.dart';
@@ -148,7 +149,7 @@ class _LogAdmState extends State<LogAdm> {
                     auth.signInWithEmailAndPassword(
                         email: _email, password: _password);
                     Navigator.of(context).pushReplacement(MaterialPageRoute(
-                      builder: (context) => SplashScreen(),
+                      builder: (context) => MainPage(),
                     ));
                   },
                 ),

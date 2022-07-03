@@ -10,8 +10,8 @@ import 'package:google_sign_in/google_sign_in.dart';
 
 class NavigationDrawerWidget extends StatelessWidget {
   final Padding = EdgeInsets.symmetric(horizontal: 20);
-  final FirebaseAuth _auth = FirebaseAuth.instance;
-  // final user = FirebaseAuth.instance.currentUser;
+  // final user = FirebaseAuth.instance.;
+  final user = FirebaseAuth.instance.currentUser!;
 
   @override
   Widget build(BuildContext context) {
@@ -45,10 +45,10 @@ class NavigationDrawerWidget extends StatelessWidget {
               text: 'Logout',
               icon: Icons.logout_outlined,
               onClicked: () {
-                Future<void> _signOut() async {
-                  await _auth.signOut();
-                }
-
+                // Future<void> _signOut() async {
+                //   await _auth.signOut();
+                // }
+                FirebaseAuth.instance.signOut();
                 Navigator.of(context).push(MaterialPageRoute(
                   builder: (context) => LogAdm(),
                 ));

@@ -41,7 +41,7 @@ class _Kasir2State extends State<Kasir2> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Welcome Again! ${_user.email}"),
+        title: Text("Welcome Again ${_user.email}" + " !"),
         backgroundColor: Color(0xff5ac18e),
       ),
       drawer: NavigationDrawerWidget(),
