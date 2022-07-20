@@ -49,7 +49,7 @@ class _CurvedNavigationBarState extends State<CurvedNavigationBar> {
                       );
                     }),
                 IconBottomBar(
-                    text: "kasir",
+                    text: "Kasir",
                     icon: Icons.money_outlined,
                     selected: _selectedIndex == 3,
                     onPressed: () {
@@ -91,11 +91,11 @@ class IconBottomBar extends StatelessWidget {
         IconButton(
             onPressed: onPressed,
             icon: Icon(icon,
-                size: 25, color: selected ? Colors.white : Colors.white)),
+                size: 30, color: selected ? Colors.white : Colors.white)),
         Text(text,
             style: TextStyle(
-                fontSize: 12,
-                height: .1,
+                fontSize: 25,
+                height: .3,
                 color: selected ? Colors.white : Colors.white))
       ],
     );

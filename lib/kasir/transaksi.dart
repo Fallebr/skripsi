@@ -54,7 +54,7 @@ class _TransaksiState extends State<Transaksi> {
 
   Future initialize() async {
     nota = [];
-    nota = await service?.getNota(email);
+    nota = await service?.getNotaToday(email);
     notaCount = nota?.length;
     nota = nota;
     refresh();
@@ -63,6 +63,14 @@ class _TransaksiState extends State<Transaksi> {
   Future getNotaFilter(startDate, endDate) async {
     nota = [];
     nota = await service?.getNotaByDate(startDate, endDate, email);
+    notaCount = nota?.length;
+    nota = nota;
+    refresh();
+  }
+
+  Future getNotaToday() async {
+    nota = [];
+    nota = await service?.getNotaToday(email);
     notaCount = nota?.length;
     nota = nota;
     refresh();
@@ -174,21 +182,21 @@ class _TransaksiState extends State<Transaksi> {
               backgroundColor: Color(0xff5ac18e),
             ),
           ),
-          FloatingActionButton.extended(
-            onPressed: () {
-              setState(() {
-                notaCount = 0;
-                income = 0;
-                nota = [];
-              });
-            },
-            label: Icon(
-              Icons.restore,
-              color: Colors.white,
-              size: 40,
-            ),
-            backgroundColor: Color(0xff5ac18e),
-          ),
+          // FloatingActionButton.extended(
+          //   onPressed: () {
+          //     setState(() {
+          //       notaCount = 0;
+          //       income = 0;
+          //       nota = [];
+          //     });
+          //   },
+          //   label: Icon(
+          //     Icons.restore,
+          //     color: Colors.white,
+          //     size: 40,
+          //   ),
+          //   backgroundColor: Color(0xff5ac18e),
+          // ),
         ],
       ),
       bottomNavigationBar: CurvedNavigationBar(),

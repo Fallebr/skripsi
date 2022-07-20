@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:intl/intl.dart';
 
 import '../kasir/transaction_state.dart';
 import '../models/nota.dart';
@@ -33,6 +34,29 @@ class TransactionService {
         .collection('transactions')
         .where('tanggal', isGreaterThanOrEqualTo: startDate)
         .where('tanggal', isLessThanOrEqualTo: endDate)
+        .where('kasir', isEqualTo: email);
+    List<Nota> notaList = [];
+    await notaQuery.get().then((querySnapshot) {
+      TransactionState.totalOrder.value = 0;
+      for (var result in querySnapshot.docs) {
+        var encodedResult = jsonEncode(result.data());
+        print(encodedResult);
+        Nota nota = Nota.fromJson(jsonDecode(encodedResult), result.id);
+        notaList.add(nota);
+        TransactionState.totalPerDay(int.parse(nota.totalOrder!));
+      }
+    });
+    return notaList;
+  }
+
+  Future<List<Nota>> getNotaToday(email) async {
+    await Firebase.initializeApp();
+    String startDate = DateFormat('dd/MM/yyyy').format(DateTime.now());
+    print("test date=====");
+    print(startDate);
+    final Query notaQuery = FirebaseFirestore.instance
+        .collection('transactions')
+        .where('tanggal', isEqualTo: startDate)
         .where('kasir', isEqualTo: email);
     List<Nota> notaList = [];
     await notaQuery.get().then((querySnapshot) {

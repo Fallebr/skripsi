@@ -157,62 +157,7 @@ class _LogAdmState extends State<LogAdm> {
               SizedBox(
                 height: 10,
               ),
-              //loggoogle
-              // Padding(
-              //   padding: const EdgeInsets.symmetric(horizontal: 25.0),
-              //   child: InkWell(
-              //     child: Container(
-              //       padding: EdgeInsets.all(20),
-              //       decoration: BoxDecoration(
-              //         color: Color(0xff5ac18e),
-              //         borderRadius: BorderRadius.circular(12),
-              //       ),
-              //       child: Center(
-              //         child: Text(
-              //           'Login with Google?',
-              //           style: TextStyle(
-              //               color: Colors.white, fontWeight: FontWeight.bold),
-              //         ),
-              //       ),
-              //     ),
-              //     onTap: () {
-              // await _googleSignIn.signIn();
-              // try {
-              //   final googleMethod = await google.signIn();
-              //   user = googleMethod;
-              //   final auth = await googleMethod!.authentication;
-              //   final cred = GoogleAuthProvider.credential(
-              //       accessToken: auth.idToken, idToken: auth.idToken);
-              //   await FirebaseAuth.instance
-              //       .signInWithCredential(cred)
-              //       .whenComplete(
-              //         () => Navigator.of(context).push(MaterialPageRoute(
-              //           builder: (context) => Home(),
-              //         )),
-              //       );
-              // } catch (e) {
-              //   print(e);
-              // }
-              //       Navigator.of(context).push(MaterialPageRoute(
-              //         builder: (context) => Home(),
-              //       ));
-              //     },
-              //   ),
-              // ),
-              //register button,
-              // Row(
-              //   mainAxisAlignment: MainAxisAlignment.center,
-              //   children: [
-              //     Text('Not a member?'),
-              //     Text(
-              //       'Register now!',
-              //       style: TextStyle(
-              //         color: Colors.blue,
-              //         fontWeight: FontWeight.bold,
-              //       ),
-              //     ),
-              //   ],
-              // ),
+             
               SizedBox(
                 height: 25,
               ),
@@ -224,28 +169,5 @@ class _LogAdmState extends State<LogAdm> {
     );
   }
 
-  // Future signIn() async {
-  //   showDialog(
-  //       context: context,
-  //       barrierDismissible: false,
-  //       builder: (context) => Center(child: CircularProgressIndicator()));
-  //   try {
-  //     await FirebaseAuth.instance.signInWithEmailAndPassword(
-  //       email: emailController.text.trim(),
-  //       password: passwordController.text.trim(),
-  //     );
-  //   } on FirebaseAuthException catch (e) {
-  //     print(e);
-  //   }
-  //   navigatorKey.currentState!.popUntil((route) => route.isFirst);
-  // }
-
-//   Future GoogleSignIn<void> _incrementCounter() async {
-//   setState(() {
-//     _counter++;
-//   });
-//   Directory directory = await getApplicationDocumentsDirectory();
-//   final String dirName = directory.path;
-//   await File('$dir/counter.txt').writeAsString('$_counter');
-// }
+  
 }
